@@ -11,6 +11,7 @@ function changeText() {
     generateText(app.chosenChordsMain) + generateText(app.chosenChordsSufix); //chordlist main + chordlist sufix
 }
 
+//disables or enables fullscreen mode
 function enableDisableFullscreen() {
   if (!isFullscreenEnabled) {
     randomizerElement.classList.add("fullscreen");
