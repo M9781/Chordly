@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oleo+Script&family=Roboto+Slab:wght@300;700&family=Roboto:wght@100;300;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/commons.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <script src="scripts/commons.js" defer></script>
+    <script src="scripts/randomizer.js" defer></script>
+    <script src="scripts/metronome.js" defer></script>
+    <script src="scripts/config.js" defer></script>
+    <script src="scripts/app.js" defer></script>
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <title>Chordly - boost up yours skills!</title>
+  </head>
+  <body>
+    <header>
+      <h1 id="page-logo"><a href="index.html">Chordly</a></h1>
+      <p id="subtitle">Boost up your skills</p>
+      <div id="main-navbar">
+        <nav>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Instructions</a></li>
+            <li><a href="#">Donate</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section id="randomizer">
+        <aside id="pre-timer">
+          <p>3</p>
+        </aside>
+
+        <p id="first-chord">D</p>
+        <p id="next-chord">F</p>
+        <div id="metronome">
+          <span id="beep1" class="beep active">&#8226;</span>
+          <span id="beep2" class="beep">&#8226;</span>
+          <span id="beep3" class="beep">&#8226;</span>
+          <span id="beep4" class="beep">&#8226;</span>
+          <span id="beep5" class="beep">&#8226;</span>
+          <span id="beep6" class="beep">&#8226;</span>
+        </div>
+
+        <div id="randomizer-options">
+          <div id="randomizer-left-column"></div>
+          <div>
+            <button id="start-btn">
+              <span class="material-symbols-sharp filled">play_arrow</span>
+            </button>
+          </div>
+          <div id="randomizer-right-column">
+            <button id="fullscreen-btn" class="randomizer-button">
+              <span class="material-symbols-sharp filled">open_in_full</span>
+            </button>
+          </div>
+        </div>
+      </section>
+      <section id="presets">
+        <h2>Presets</h2>
+        <div class="options-wrapper">
+          <div id="app-presets" class="options">
+            <h3>App presets</h3>
+            <ul>
+              <li>
+                <label for="show-metronome">Show metronome </label>
+
+                <label class="switch">
+                  <input
+                    name="show-metronome"
+                    id="show-metronome"
+                    type="checkbox"
+                    class="toggle-switch"
+                    value="show-metronome"
+                  />
+                  <span class="slider"></span>
+                </label>
+              </li>
+              <li>
+                <label for="show-upc-chord">Show upcoming chord </label>
+                <label class="switch">
+                  <input
+                    name="show-upc-chord"
+                    id="show-upc-chord"
+                    type="checkbox"
+                    class="toggle-switch"
+                    value="show-upc-chord"
+                  />
+                  <span class="slider"></span>
+                </label>
+              </li>
+              <li>
+                <label for="show-pre-timer">Show pre-timer </label>
+                <label class="switch">
+                  <input
+                    name="show-pre-timer"
+                    id="show-pre-timer"
+                    type="checkbox"
+                    class="toggle-switch"
+                    value="show-pre-timer"
+                  />
+                  <span class="slider"></span>
+                </label>
+              </li>
+            </ul>
+          </div>
+          <div id="chord-duration" class="options">
+            <h3>Chord duration</h3>
+            <div id="chord-bar" class="slide-container">
+              <input
+                type="range"
+                min="1"
+                max="100"
+                value="5"
+                class="slider-bar"
+                id="chord-range"
+              />
+              <label for="chord-range"
+                ><span id="chord-duration-value">4</span> s</label
+              >
+            </div>
+          </div>
+          <div id="metronome-time" class="options">
+            <h3>Repeat chord</h3>
+            <div id="metronome-bar" class="slide-container">
+              <input
+                type="range"
+                min="1"
+                max="100"
+                value="50"
+                class="slider-bar"
+                id="metronome-range"
+              />
+              <label for="metronome-range">
+                <span id="metronome-time-value">4</span>x</label
+              >
+            </div>
+          </div>
+          <form id="metronome-signature" class="options">
+            <h3>Metronome time signature</h3>
+            <ul>
+              <li>
+                <label class="container"
+                  >4/4
+                  <input
+                    id="metronome-44"
+                    name="metronome-signature"
+                    value="44"
+                    type="radio"
+                    class="metronome-signature"
+                  />
+                  <span class="checkmark"></span>
+                </label>
+              </li>
+              <li>
+                <label class="container"
+                  >3/4
+                  <input
+                    id="metronome-34"
+                    name="metronome-signature"
+                    value="34"
+                    type="radio"
+                    class="metronome-signature"
+                  />
+                  <span class="checkmark"></span>
+                </label>
+              </li>
+              <li>
+                <label class="container"
+                  >2/4
+                  <input
+                    id="metronome-24"
+                    name="metronome-signature"
+                    value="24"
+                    type="radio"
+                    class="metronome-signature"
+                  />
+                  <span class="checkmark"></span>
+                </label>
+              </li>
+              <li>
+                <label class="container"
+                  >6/8
+                  <input
+                    id="metronome-68"
+                    name="metronome-signature"
+                    value="68"
+                    type="radio"
+                    class="metronome-signature"
+                  />
+                  <span class="checkmark"></span>
+                </label>
+              </li>
+            </ul>
+          </form>
+        </div>
+      </section>
+      <section id="difficulty">
+        <h2>Difficulty</h2>
+        <div class="options-wrapper">
+          <div id="difficulty-basic" class="options">
+            <div class="difficulty-level-header">
+              <h3>Basic</h3>
+              <input
+                id="basic-all"
+                name="basic-all"
+                value="basic-all"
+                type="checkbox"
+                class="checkbox-hidden"
+              />
+              <label for="basic-all" class="checkbox-plus noselect"
+                ><span class="material-symbols-sharp">add</span></label
+              >
+            </div>
+            <p id="basic-empty-error"></p>
+            <div id="basic-chords-list" class="chords-list">
+              <!-- Ta lista będzie generowana z arraya w js -->
+            </div>
+          </div>
+          <div id="difficulty-medium" class="options">
+            <div class="difficulty-level-header">
+              <h3>Medium</h3>
+              <input
+                id="medium-all"
+                name="medium-all"
+                value="medium-all"
+                type="checkbox"
+                class="checkbox-hidden"
+              />
+              <label for="medium-all" class="checkbox-plus noselect"
+                ><span class="material-symbols-sharp"> add </span></label
+              >
+            </div>
+            <div id="medium-chords-list" class="chords-list">
+              <!--Ta lista będzie generowana z arraya w js (stwórz tyle obiektów ile jest w arrayu)-->
+            </div>
+          </div>
+          <div id="difficulty-intermediate" class="options">
+            <div class="difficulty-level-header">
+              <h3>Intermediate</h3>
+              <input
+                id="intermediate-all"
+                name="intermediate-all"
+                value="intermediate-all"
+                type="checkbox"
+                class="checkbox-hidden"
+              />
+              <label for="intermediate-all" class="checkbox-plus noselect"
+                ><span class="material-symbols-sharp">add</span></label
+              >
+            </div>
+            <div id="intermediate-chords-list" class="chords-list">
+              <!--Ta lista będzie generowana z arraya w js -->
+            </div>
+          </div>
+          <div id="difficulty-advanced" class="options">
+            <div class="difficulty-level-header">
+              <h3>Advanced</h3>
+              <input
+                id="advanced-all"
+                name="advanced-all"
+                value="advanced-all"
+                type="checkbox"
+                class="checkbox-hidden"
+              />
+              <label for="advanced-all" class="checkbox-plus noselect"
+                ><span class="material-symbols-sharp">add</span></label
+              >
+            </div>
+            <div id="advanced-chords-list" class="chords-list">
+              <!--Ta lista będzie generowana z arraya w js -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <img id="logo-TSW" src="images/logoTSW.png" alt="logo" />
+    </footer>
+  </body>
+</html>

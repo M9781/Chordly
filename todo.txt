@@ -1,0 +1,52 @@
+//Funkcja wyszukaj ciasteczka
+//jeśli nie znajdziesz ciasteczek, wczytaj wartości domyślne do ciastek
+
+// funkcja wczytaj dane z ciastek do obiektu aplikacji
+
+//stwórz ręcznie listy basic, medium, intermediate, advanced
+
+// Funkcja tworząca checkboxy w chord-liście na podstawie ręcznej listy
+
+// funkcja zaznaczająca wszystkie checkboxy z danego poziomu trudności
+
+//funkcja zbierająca dane ze wszystkich checkboxów
+
+// Funkcja nasłuchująca checkboxy
+
+//funkcja uruchamiająca randomizer
+
+//funkcja aktualizująca ciasteczko i dane w apce
+
+//poprawa parsera ciasteczek - poprawne typy danych
+
+//funkcja napychająca dane z checkboxów w dwie randomlisty - jedną z basicami, drugą z tymi szlaczkami
+
+//ustawianie kontrolek na wartości startowe - z domyślnych lub z ciastek
+
+// zaznacz domyślnie wybrane checkboxy
+
+// event listenery dla presetów jednak bez pętli xd muszę podpiąć funkcje pod to.
+
+//coś, co nie pozwala pozostawić pustego basica - tło zmień na jakieś przerażające i efekt i nie pozwalaj uruchomić randomizera
+
+// Pamiętaj o korzystaniu z presets jako true-false czy wykonać funkcję
+
+//funkcja robiąca fullscreen mode dla randomizera i wracająca do normalnego widoku
+// ------------ zrobione ^^^^^
+
+// repeat chord powinien dzialac troche inaczej
+// w ramach zadanego czasu i powinny być ograniczenia, że w 5s nie powinno być 30x powtórzen.
+
+// metronom - wizualny i dźwiękowy.
+
+//funkcja pre-timera*/
+
+//funkcja randomizera pre-timer pass
+
+//funkcja zmieniająca wielkość czcionki w zależności od jej rozmiaru i dostępnego miejsca
+//Pewnie potrzeba 2 event listenerów - na zmianę tekstu i zmianę szerokości ekranu.
+
+//augmented plus bug - exception
+//fullscreen - absolute control elements cause scrollbar
+
+// funkcja pokazywania które powtózenie, jeżeli ma być inne niż 1

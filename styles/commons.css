@@ -1,0 +1,383 @@
+/* MAIN SETTINGS */
+
+* {
+  font-family: "Roboto", sans-serif;
+}
+html {
+  min-height: 100%;
+  color: beige;
+}
+
+body {
+  background-color: rgb(49, 49, 49);
+  min-height: 100vh;
+  min-width: 350px;
+  margin: 0;
+  height: 100%;
+}
+
+.material-symbols-sharp {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 200, "opsz" 48;
+}
+
+.material-symbols-sharp.filled {
+  font-variation-settings: "FILL" 1;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+a {
+  text-decoration: none;
+}
+
+label {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* COMMON ELEMENTS */
+
+#page-logo {
+  transform: rotate(-3deg);
+  text-align: center;
+  vertical-align: bottom;
+  width: fit-content;
+  height: max(min(30vw, 18rem), 8rem);
+  margin: 0 auto;
+  padding: 0;
+}
+
+#page-logo a {
+  font-family: "Oleo Script", sans-serif;
+  font-size: max(min(25vw, 15rem), 6.5rem);
+  min-height: 250px;
+  background: linear-gradient(30deg, rgb(225, 13, 126), rgb(239, 103, 175));
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  /* taki sposób na obramowanie i cień. */
+  filter: drop-shadow(0px 0px 0.5px beige) drop-shadow(0px 0px 0.5px beige)
+    drop-shadow(0px 0px 0.5px beige) drop-shadow(0px 0px 0.5px beige)
+    drop-shadow(0px 0px 0.5px beige) drop-shadow(0px 0px 0.5px beige)
+    drop-shadow(2px 2px 1px black);
+  -webkit-font-smoothing: antialiased;
+}
+
+#subtitle {
+  text-align: center;
+  font-size: 1.5rem;
+  font-family: "Roboto Slab";
+  font-weight: 700;
+  color: rgb(185, 185, 178);
+  margin: 0;
+}
+
+header {
+  background: linear-gradient(
+    180deg,
+    rgba(155, 8, 113, 0.5),
+    rgb(49, 49, 49, 0.2)
+  );
+  padding: 0 0.5rem;
+}
+
+#main-navbar {
+  margin-top: 20px;
+}
+
+nav {
+  margin: 8px 0;
+}
+
+nav ul {
+  justify-content: center;
+}
+
+nav a {
+  color: rgb(225, 13, 126);
+  font-size: 20px;
+  padding: 10px;
+  margin: 0 5px;
+  text-shadow: 1px 1px 2px rgb(0, 0, 0, 0.3);
+}
+
+nav a:hover {
+  color: black;
+  background: linear-gradient(30deg, rgb(225, 13, 126), rgb(239, 103, 175));
+  border-radius: 8px;
+  text-shadow: none;
+}
+
+h2 {
+  /* section header */
+  text-align: center;
+  font-size: 2rem;
+  margin: 0 0 1rem 0;
+}
+
+h3 {
+  /* options header */
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+
+section {
+  margin: 2rem auto;
+}
+
+footer {
+  padding: 2rem;
+  height: 5rem;
+  background: linear-gradient(
+    180deg,
+    rgb(49, 49, 49, 0.2),
+    rgb(155, 8, 113, 0.5)
+  );
+}
+
+#logo-TSW {
+  width: 100px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* ---ALTERNATIVE INPUTS--- */
+/* thanks to: https://www.w3schools.com/
+
+/* HiDDEN CHECKBOX */
+
+.checkbox-hidden {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/*SYMBOL CHECKBOX*/
+
+.checkbox-plus {
+  transform: scale(1.5);
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked + .checkbox-plus {
+  color: rgb(225, 13, 126);
+  transition: 0.1s;
+}
+
+/* TAG CLOUD CHECKBOX */
+
+.checkbox-tag {
+  display: block;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  width: fit-content;
+  background-color: rgb(49, 49, 49);
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 0.5rem;
+  box-shadow: 2px 2px 1px rgb(0, 0, 0, 0.2);
+  transition: 0.1s;
+}
+
+input[type="checkbox"]:checked + .checkbox-tag {
+  background-color: rgb(225, 13, 126);
+  transition: 0.1s;
+}
+
+/* ----SLIDERS----- */
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: rgb(225, 13, 126);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px rgb(225, 13, 126);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* --------- RADIO BUTTONS ---------------- */
+
+/* Customize the label (the container) */
+.container {
+  display: block;
+  position: relative;
+  margin: auto 5px auto 0;
+  cursor: pointer;
+  font-size: 1rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+  position: relative;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  vertical-align: middle;
+  margin: auto 0;
+  top: 0;
+  left: 0.3rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: rgb(225, 13, 126);
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+  top: 0.5rem;
+  left: 0.5rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: white;
+}
+
+/* ----------- SLIDER-BARS ---------- */
+
+.slide-container {
+  width: 100%; /* Width of the outside container */
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.slide-container label {
+  display: block;
+  padding-left: 0.3rem;
+  min-width: fit-content;
+}
+
+/* The slider itself */
+.slider-bar {
+  width: 100%;
+  -webkit-appearance: none; /* Override default CSS styles */
+  appearance: none;
+  /*Full-width */
+  border-radius: 5px;
+  height: 15px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: 0.2s; /* 0.2 seconds transition on hover */
+  transition: opacity 0.2s;
+}
+
+/* Mouse-over effects */
+.slider-bar:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider-bar::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  border-radius: 50%;
+  background: rgb(225, 13, 126); /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.slider-bar::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  border-radius: 50%;
+  background: rgb(225, 13, 126); /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
