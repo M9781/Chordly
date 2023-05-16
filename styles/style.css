@@ -17,16 +17,14 @@ main {
 
 #randomizer.fullscreen {
   position: fixed;
-  z-index: 1;
   top: 0;
   left: 0;
+  z-index: 1000;
   width: 100%;
   max-width: none;
   height: 100vh;
-  display: block;
-  box-sizing: border-box;
-  border-radius: 0;
   margin: 0;
+  border-radius: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;

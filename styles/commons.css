@@ -4,16 +4,18 @@
   font-family: "Roboto", sans-serif;
 }
 html {
-  min-height: 100%;
   color: beige;
 }
 
 body {
   background-color: rgb(49, 49, 49);
-  min-height: 100vh;
   min-width: 350px;
   margin: 0;
-  height: 100%;
+}
+
+body.fullscreen {
+  height: 100vh;
+  overflow-y: hidden;
 }
 
 .material-symbols-sharp {

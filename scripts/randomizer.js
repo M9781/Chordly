@@ -15,9 +15,11 @@ function changeText() {
 function enableDisableFullscreen() {
   if (!isFullscreenEnabled) {
     randomizerElement.classList.add("fullscreen");
+    document.body.classList.add("fullscreen")
     isFullscreenEnabled = true;
   } else {
     randomizerElement.classList.remove("fullscreen");
+    document.body.classList.remove("fullscreen")
     isFullscreenEnabled = false;
   }
 }
