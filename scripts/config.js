@@ -35,9 +35,11 @@ function updateChosenChords(difficultyLevel) {
   );
   passCookie("chosenChordsMain", app.chosenChordsMain);
   passCookie("chosenChordsSufix", app.chosenChordsSufix);
+
   if (difficultyLevel == "basic") {
-    difficultyBasicOptionsElement.classList.remove("warning");
-    BasicEmptyErrorOutputElement.textContent = "";
+    if (checkForBasicEmptyError()) {
+      stopRandomizer();
+    }
   }
 }
 

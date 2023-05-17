@@ -24,22 +24,44 @@ function enableDisableFullscreen() {
   }
 }
 
-// At least 1 basic chord has to be picked for Randomizer to run
+// At least 1 Main (Key/basic) chord has to be picked for Randomizer to run
 function checkForBasicEmptyError() {
   if (app.chosenChordsMain.length == 0) {
     if (isFullscreenEnabled) {
       enableDisableFullscreen();
     }
-    difficultyBasicOptionsElement.classList.add("warning");
-    difficultyBasicOptionsElement.scrollIntoView();
+    difficultyOptionsElements.basic.classList.add("warning");
+    difficultyOptionsElements.basic.scrollIntoView();
     BasicEmptyErrorOutputElement.textContent =
       "You have to pick at least one Basic chord!";
     return true;
   } else {
-    difficultyBasicOptionsElement.classList.remove("warning");
+    difficultyOptionsElements.basic.classList.remove("warning");
     BasicEmptyErrorOutputElement.textContent = "";
     return false;
   }
+}
+
+// at least 1 suffix or at least one custom chord has to be picked for Randomizer to run
+//function checkForSufixEmptyError() {
+//
+//}
+
+// separate functions for starting randomizer
+function startRandomizer() {
+  startBtn.children[0].textContent = "pause";
+  randomizerInterval = setInterval(
+    changeText,
+    app.repeatChord * app.chordDuration * 1000
+  );
+  isRandomizerRunning = true;
+}
+
+// separate function for stoping randomizer
+function stopRandomizer() {
+  startBtn.children[0].textContent = "play_arrow";
+  clearInterval(randomizerInterval);
+  isRandomizerRunning = false;
 }
 
 //event listener function for startBtn
@@ -50,17 +72,10 @@ function startStopRandomizer(event) {
   }
 
   if (!isRandomizerRunning) {
-    startBtn.children[0].textContent = "pause";
-    randomizerInterval = setInterval(
-      changeText,
-      app.repeatChord * app.chordDuration * 1000
-    );
-
+    startRandomizer();
     //turn on metronome (if app.showmetronome)
   } else {
-    clearInterval(randomizerInterval);
-    startBtn.children[0].textContent = "play_arrow";
+    stopRandomizer();
+    //turn off metronome (if app.showmetronome)
   }
-
-  isRandomizerRunning = !isRandomizerRunning;
 }

@@ -37,8 +37,23 @@ const metronomeSignatureRadio = document.querySelectorAll(
   "#metronome-signature input"
 );
 
-const difficultyBasicOptionsElement =
-  document.getElementById("difficulty-basic");
+let difficultyOptionsElements = {
+  basic: document.getElementById("difficulty-basic"),
+  medium: document.getElementById("difficulty-medium"),
+  intermediate: document.getElementById("difficulty-intermediate"),
+  advanced: document.getElementById("difficulty-advanced"),
+};
+
+//const difficultyBasicOptionsElement =
+//  document.getElementById("difficulty-basic");
+const difficultyMediumOptionsElement =
+  document.getElementById("difficulty-medium");
+const difficultyIntermediateOptionsElement = document.getElementById(
+  "difficulty-intermediate"
+);
+const difficultyAdvancedOptionsElement = document.getElementById(
+  "difficulty-advanced"
+);
 
 const BasicEmptyErrorOutputElement =
   document.getElementById("basic-empty-error");
@@ -130,19 +145,24 @@ let MetronomeSoundUp = new Audio("sounds/MetronomeUp.wav");
 
 // -------- INITIALIZATION -------
 
-// sprawdzenie, czy ciasteczka istnieją
+// Check if cookies exist
 const cookiesExist = getCookie("cookiesExist");
 if (cookiesExist) {
-  // wczytaj dane z ciastek do obiektu aplikacji
+  // load cookies data to app object
   loadCookies();
 } else {
-  //Jeśli niema ciastek, utwórz ciasteczka z wartoścmi domyślnymi.
+  // when cookies don't exist, load defaults
   loadDefaultCookies();
 }
 
 showHideMetronome();
 showHideNextChord();
 showHidePreTimer();
+
+// If page was closed without choosing at least one Main (Basic)
+if (app.chosenChordsMain.length == 0) {
+  app.chosenChordsMain = ["C", "D", "E", "F", "G", "A", "B"]
+}
 
 // -------- CREATE OBJECTS -------
 //create a checkbox for every chord
