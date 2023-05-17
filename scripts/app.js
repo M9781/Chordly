@@ -66,7 +66,7 @@ let app = {
   repeatChord: 4,
   chordDuration: 5,
   metronomeSignature: "44",
-  chosenChordsMain: ["C", "D", "E", "F", "G", "A", "B"],
+  chosenChordsMain: [1, 2, 3, 4, 5, 6, 7],
   chosenChordsSufix: [" ", " "], // adding 2 empty sufixes
 };
 
@@ -82,20 +82,20 @@ const chosenChords = {
 const chords = {
   basic: [
     { id: 1, value: "C", label: "C" },
-    //{ id: 2, value: "C#", label: "C#" },
+    { id: 2, value: "C#", label: "C#" },
     { id: 3, value: "D♭", label: "D♭" },
     { id: 4, value: "D", label: "D" },
-    //{ id: 5, value: "D#", label: "D#" },
+    { id: 5, value: "D#", label: "D#" },
     { id: 6, value: "E♭", label: "E♭" },
     { id: 7, value: "E", label: "E" },
     { id: 8, value: "F", label: "F" },
-    //{ id: 9, value: "F#", label: "F#" },
+    { id: 9, value: "F#", label: "F#" },
     { id: 10, value: "G♭", label: "G♭" },
     { id: 11, value: "G", label: "G" },
-    //{ id: 12, value: "G#", label: "G#" },
+    { id: 12, value: "G#", label: "G#" },
     { id: 13, value: "A♭", label: "A♭" },
     { id: 14, value: "A", label: "A" },
-    //{ id: 15, value: "A#", label: "A#" },
+    { id: 15, value: "A#", label: "A#" },
     { id: 16, value: "B♭", label: "B♭" },
     { id: 17, value: "B", label: "B" },
   ],
@@ -104,7 +104,7 @@ const chords = {
     { id: 19, value: "7", label: "dominant 7" },
     { id: 20, value: "m7", label: "minor 7" },
     { id: 21, value: "°", label: "diminished (°)" },
-    //{ id: 22, value: "+", label: "augmented (+)" },
+    { id: 22, value: "+", label: "augmented (+)" },
   ],
   intermediate: [
     { id: 23, value: "M7", label: "Major 7" },
@@ -118,8 +118,8 @@ const chords = {
     { id: 29, value: "11", label: "11" },
     { id: 30, value: "m11", label: "minor 11" },
     { id: 31, value: "13", label: "13" },
-    //{ id: 32, value: "6/9", label: "6/9" },
-    //{ id: 33, value: "7#5", label: "7Alt (7#5)" },
+    { id: 32, value: "6/9", label: "6/9" },
+    { id: 33, value: "7#5", label: "7Alt (7#5)" },
     { id: 34, value: "°7", label: "diminished 7 (°7)" },
     { id: 35, value: "m7♭5", label: "half-diminished (m7♭5)" },
   ],
@@ -150,28 +150,45 @@ showHidePreTimer();
 
 // If page was closed without choosing at least one Main (Basic)
 if (app.chosenChordsMain.length == 0) {
-  app.chosenChordsMain = ["C", "D", "E", "F", "G", "A", "B"];
+  app.chosenChordsMain = [1, 2, 3, 4, 5, 6, 7];
 }
 
 // -------- CREATE OBJECTS -------
-//create a checkbox for every chord
+//create checkboxes for every predefined chord
 for (const difficultyLevel in chords) {
   for (const chord in chords[difficultyLevel]) {
     const chordCheckbox = createChordCheckbox(
+      chords[difficultyLevel][chord].id,
       chords[difficultyLevel][chord].label,
-      chords[difficultyLevel][chord].value
+      chords[difficultyLevel][chord].value,
+      difficultyLevel
     );
     chordListElements[difficultyLevel].appendChild(chordCheckbox.input);
     chordListElements[difficultyLevel].appendChild(chordCheckbox.label);
   }
 }
 
+//create checkboxes for every custom chord (if any)
+
 // ---- INITIAL VALUES ------
+// set initial states of checkboxes
+
+// help array to search through created checkboxes id. Removes " " strings
+let initialChordList = []
+  .concat(app.chosenChordsMain, app.chosenChordsSufix)
+  .filter((item) => item != " ");
+
+for (let chord of initialChordList) {
+  document.querySelector("#chord-" + chord).checked = true;
+}
+for (let difficultyLevel in chosenChords) {
+  updateChosenChords(difficultyLevel);
+}
+updateChosenChords();
+
 //set initial values of randomizer chords
-firstChordElement.textContent =
-  generateText(app.chosenChordsMain) + generateText(app.chosenChordsSufix);
-nextChordElement.textContent =
-  generateText(app.chosenChordsMain) + generateText(app.chosenChordsSufix);
+firstChordElement.textContent = getRandomChord();
+nextChordElement.textContent = getRandomChord();
 
 // set initial values of app presets
 showMetronomeSwitch.checked = app.showMetronome;
@@ -185,19 +202,6 @@ document.querySelector("#metronome-" + app.metronomeSignature).checked = true;
 // set initial value of bar labels
 repeatChordBarLabel.textContent = app.repeatChord;
 chordDurationBarLabel.textContent = app.chordDuration;
-
-// help array to search through created checkboxes id. Removes " " strings
-let initialChordList = []
-  .concat(app.chosenChordsMain, app.chosenChordsSufix)
-  .filter((item) => item != " ");
-
-// set initial states of checkboxes
-for (let chord of initialChordList) {
-  document.querySelector("#chord-" + chord).checked = true;
-}
-for (let difficultyLevel in chosenChords) {
-  updateChosenChords(difficultyLevel);
-}
 
 // -------- EVENT LISTENERS ---------
 

@@ -4,11 +4,25 @@ function generateText(list) {
   return list[index];
 }
 
+//function returns a randomly generated chord
+function getRandomChord() {
+  const chordMainPart = chosenChords.basic.map((ccb) => ccb.value);
+  const chordSufix = [].concat(
+    chosenChords.medium.map((ccm) => ccm.value),
+    chosenChords.intermediate.map((cci) => cci.value),
+    chosenChords.advanced.map((cca) => cca.value),
+    [" ", " "]
+  );
+  //get random value whether to show a predefined or custom (only if both exist)
+
+  const randomChord = generateText(chordMainPart) + generateText(chordSufix);
+  return randomChord;
+}
+
 // function changes random chords to view in randomizer
 function changeText() {
   firstChordElement.textContent = nextChordElement.textContent;
-  nextChordElement.textContent =
-    generateText(app.chosenChordsMain) + generateText(app.chosenChordsSufix); //chordlist main + chordlist sufix
+  nextChordElement.textContent = getRandomChord(); //chordlist main + chordlist sufix
 }
 
 //disables or enables fullscreen mode

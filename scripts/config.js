@@ -1,36 +1,51 @@
 //function creates a chord checkbox
-function createChordCheckbox(name, value) {
+function createChordCheckbox(id, label, value, difficultyLevel) {
   const newCheckbox = document.createElement("input");
   newCheckbox.name = value;
-  newCheckbox.id = "chord-" + value;
+  newCheckbox.id = "chord-" + id;
   newCheckbox.value = value;
   newCheckbox.type = "checkbox";
   newCheckbox.classList.add("checkbox-hidden");
+  newCheckbox.dataset.difficultyLevel = difficultyLevel;
+  newCheckbox.dataset.label = label;
   const newLabel = document.createElement("label");
   newLabel.classList.add("checkbox-tag");
   newLabel.classList.add("noselect");
-  newLabel.htmlFor = "chord-" + value;
-  newLabel.textContent = name;
+  newLabel.htmlFor = "chord-" + id;
+  newLabel.textContent = label;
   return { input: newCheckbox, label: newLabel };
 }
 
 //function returns a list of  checked chesckboxes
-function generateCheckboxList(divId) {
+function generateCheckedCheckboxList(difficultyLevel) {
+  const divId = difficultyLevel + "-chords-list";
   const checkboxes = document.querySelectorAll(
     `#${divId} input[type=checkbox]:checked`
   );
-  const values = Array.from(checkboxes).map((cb) => cb.value);
+  const values = Array.from(checkboxes).map((cb) => {
+    let checkedCheckbox;
+    if (cb.dataset.difficultyLevel == difficultyLevel) {
+      checkedCheckbox = {
+        id: cb.id.split("-").pop(),
+        label: cb.dataset.label,
+        value: cb.value,
+      };
+    }
+    return checkedCheckbox;
+  });
+  console.log(values);
   return values;
 }
 // event listener function - updates chosenChords list, app and cookies.
 function updateChosenChords(difficultyLevel) {
-  const checkboxList = generateCheckboxList(difficultyLevel + "-chords-list");
+  const checkboxList = generateCheckedCheckboxList(difficultyLevel);
   chosenChords[difficultyLevel] = checkboxList;
-  app.chosenChordsMain = chosenChords.basic;
+  console.log(chosenChords)
+  app.chosenChordsMain = chosenChords.basic.map((ccb) => ccb.id);
   app.chosenChordsSufix = [].concat(
-    chosenChords.medium,
-    chosenChords.intermediate,
-    chosenChords.advanced,
+    chosenChords.medium.map((ccm) => ccm.id),
+    chosenChords.intermediate.map((cci) => cci.id),
+    chosenChords.advanced.map((cca) => cca.id),
     [" ", " "]
   );
   passCookie("chosenChordsMain", app.chosenChordsMain);
