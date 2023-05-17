@@ -19,7 +19,7 @@ const metronome = {
 const startBtn = document.getElementById("start-btn");
 const fullscreenBtn = document.getElementById("fullscreen-btn");
 
-const randomizerElement = document.getElementById("randomizer")
+const randomizerElement = document.getElementById("randomizer");
 
 const showMetronomeSwitch = document.getElementById("show-metronome");
 const showNextChordSwitch = document.getElementById("show-upc-chord");
@@ -43,7 +43,6 @@ const difficultyBasicOptionsElement =
 const BasicEmptyErrorOutputElement =
   document.getElementById("basic-empty-error");
 
-
 const chordListElements = {
   basic: document.getElementById("basic-chords-list"),
   medium: document.getElementById("medium-chords-list"),
@@ -52,7 +51,8 @@ const chordListElements = {
 };
 
 // --------- DEFAULT VALUES ------------
-let isFullscreenEnabled = false
+let isFullscreenEnabled = false;
+let isRandomizerRunning = false;
 
 let app = {
   cookiesExist: true,
@@ -64,26 +64,9 @@ let app = {
   metronomeSignature: "44",
   chosenChordsMain: ["C", "D", "E", "F", "G", "A", "B"],
   chosenChordsSufix: [" ", " "], // adding 2 empty sufixes
-  isRandomizerRunning: false,
-  loadedTexts: ["-"],
-  txtInterval: 5,
 };
 
-// object containing default values for cookies
-const defaultCookies = {
-  cookiesExist: true,
-  showNextChord: true,
-  showMetronome: true,
-  showPreTimer: true,
-  repeatChord: 4,
-  chordDuration: 5,
-  metronomeSignature: "44",
-  chosenChordsMain: ["C", "D", "E", "F", "G", "A", "B"],
-  chosenChordsSufix: [" ", " "], // adding 2 empty sufixes
-  isRandomizerRunning: false,
-};
-
-// object containing values of chosen chords
+// object containing OBJECTS of chosen chords
 const chosenChords = {
   basic: [],
   medium: [],
@@ -91,40 +74,50 @@ const chosenChords = {
   advanced: [],
 };
 
-// object containning all the chords and its labels
+// object containning all the chords objects and its labels
 const chords = {
   basic: [
     { id: 1, value: "C", label: "C" },
-    { id: 2, value: "D", label: "D" },
-    { id: 3, value: "E", label: "E" },
-    { id: 4, value: "F", label: "F" },
-    { id: 5, value: "G", label: "G" },
-    { id: 6, value: "A", label: "A" },
-    { id: 7, value: "B", label: "B" },
+    //{ id: 2, value: "C#", label: "C#" },
+    { id: 3, value: "D♭", label: "D♭" },
+    { id: 4, value: "D", label: "D" },
+    //{ id: 5, value: "D#", label: "D#" },
+    { id: 6, value: "E♭", label: "E♭" },
+    { id: 7, value: "E", label: "E" },
+    { id: 8, value: "F", label: "F" },
+    //{ id: 9, value: "F#", label: "F#" },
+    { id: 10, value: "G♭", label: "G♭" },
+    { id: 11, value: "G", label: "G" },
+    //{ id: 12, value: "G#", label: "G#" },
+    { id: 13, value: "A♭", label: "A♭" },
+    { id: 14, value: "A", label: "A" },
+    //{ id: 15, value: "A#", label: "A#" },
+    { id: 16, value: "B♭", label: "B♭" },
+    { id: 17, value: "B", label: "B" },
   ],
   medium: [
-    { id: 8, value: "m", label: "minor" },
-    { id: 9, value: "7", label: "dominant 7" },
-    { id: 10, value: "m7", label: "minor 7" },
-    { id: 11, value: "°", label: "diminished (°)" },
-    { id: 12, value: "+", label: "augmented (+)" },
+    { id: 18, value: "m", label: "minor" },
+    { id: 19, value: "7", label: "dominant 7" },
+    { id: 20, value: "m7", label: "minor 7" },
+    { id: 21, value: "°", label: "diminished (°)" },
+    //{ id: 22, value: "+", label: "augmented (+)" },
   ],
   intermediate: [
-    { id: 13, value: "M7", label: "Major 7" },
-    { id: 14, value: "6", label: "6" },
-    { id: 15, value: "sus2", label: "suspended 2" },
-    { id: 16, value: "sus4", label: "suspended 4" },
-    { id: 17, value: "9", label: "9" },
-    { id: 18, value: "m9", label: "minor 9" },
+    { id: 23, value: "M7", label: "Major 7" },
+    { id: 24, value: "6", label: "6" },
+    { id: 25, value: "sus2", label: "suspended 2" },
+    { id: 26, value: "sus4", label: "suspended 4" },
+    { id: 27, value: "9", label: "9" },
+    { id: 28, value: "m9", label: "minor 9" },
   ],
   advanced: [
-    { id: 19, value: "11", label: "11" },
-    { id: 20, value: "m11", label: "minor 11" },
-    { id: 21, value: "13", label: "13" },
-    { id: 22, value: "6/9", label: "6/9" },
-    { id: 23, value: "7#5", label: "7Alt (7#5)" },
-    { id: 24, value: "°7", label: "diminished 7 (°7)" },
-    { id: 25, value: "m7♭5", label: "half-diminished (m7♭5)" },
+    { id: 29, value: "11", label: "11" },
+    { id: 30, value: "m11", label: "minor 11" },
+    { id: 31, value: "13", label: "13" },
+    //{ id: 32, value: "6/9", label: "6/9" },
+    //{ id: 33, value: "7#5", label: "7Alt (7#5)" },
+    { id: 34, value: "°7", label: "diminished 7 (°7)" },
+    { id: 35, value: "m7♭5", label: "half-diminished (m7♭5)" },
   ],
 };
 
@@ -134,8 +127,6 @@ let randomizerInterval;
 // Metronome sounds
 let MetronomeSoundDown = new Audio("sounds/Metronome.wav");
 let MetronomeSoundUp = new Audio("sounds/MetronomeUp.wav");
-
-
 
 // -------- INITIALIZATION -------
 
@@ -204,7 +195,7 @@ for (let difficultyLevel in chosenChords) {
 // start/pause event listener
 startBtn.addEventListener("click", startStopRandomizer);
 
-fullscreenBtn.addEventListener("click", enableDisableFullscreen)
+fullscreenBtn.addEventListener("click", enableDisableFullscreen);
 
 for (const difficultyLevel in chordListElements) {
   // chord checkboxes event listener
@@ -250,15 +241,3 @@ for (let radioControl of metronomeSignatureRadio) {
     updateCookie("metronomeSignature", event.target.value);
   });
 }
-
-
-
-
-//
-//
-// nasłuchuje zmian w inpucie time i zapisuje ciasteczko
-// timeInput.addEventListener("change", function (event) {
-//   app.txtInterval = event.target.valueAsNumber;
-//   passCookie(txtInterval, app.txtInterval);
-//   timeInput.setAttribute("value", time);
-// });

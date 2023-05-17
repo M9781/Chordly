@@ -15,11 +15,11 @@ function changeText() {
 function enableDisableFullscreen() {
   if (!isFullscreenEnabled) {
     randomizerElement.classList.add("fullscreen");
-    document.body.classList.add("fullscreen")
+    document.body.classList.add("fullscreen");
     isFullscreenEnabled = true;
   } else {
     randomizerElement.classList.remove("fullscreen");
-    document.body.classList.remove("fullscreen")
+    document.body.classList.remove("fullscreen");
     isFullscreenEnabled = false;
   }
 }
@@ -49,16 +49,18 @@ function startStopRandomizer(event) {
     return;
   }
 
-  if (!app.isRandomizerRunning) {
+  if (!isRandomizerRunning) {
     startBtn.children[0].textContent = "pause";
     randomizerInterval = setInterval(
       changeText,
       app.repeatChord * app.chordDuration * 1000
     );
+
     //turn on metronome (if app.showmetronome)
   } else {
     clearInterval(randomizerInterval);
     startBtn.children[0].textContent = "play_arrow";
   }
-  app.isRandomizerRunning = !app.isRandomizerRunning;
+
+  isRandomizerRunning = !isRandomizerRunning;
 }

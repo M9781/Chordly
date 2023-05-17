@@ -46,8 +46,8 @@ function loadCookies() {
 
 // function loads default data to cookies and app object.
 function loadDefaultCookies() {
-  for (const cookie in defaultCookies) {
-    passCookie(cookie, defaultCookies[cookie]);
+  for (const cookie in app) {
+    passCookie(cookie, app[cookie]);
   }
   // save data to the app object
   loadCookies();
