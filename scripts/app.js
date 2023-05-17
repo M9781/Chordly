@@ -37,23 +37,12 @@ const metronomeSignatureRadio = document.querySelectorAll(
   "#metronome-signature input"
 );
 
-let difficultyOptionsElements = {
+const difficultyOptionsElements = {
   basic: document.getElementById("difficulty-basic"),
   medium: document.getElementById("difficulty-medium"),
   intermediate: document.getElementById("difficulty-intermediate"),
   advanced: document.getElementById("difficulty-advanced"),
 };
-
-//const difficultyBasicOptionsElement =
-//  document.getElementById("difficulty-basic");
-const difficultyMediumOptionsElement =
-  document.getElementById("difficulty-medium");
-const difficultyIntermediateOptionsElement = document.getElementById(
-  "difficulty-intermediate"
-);
-const difficultyAdvancedOptionsElement = document.getElementById(
-  "difficulty-advanced"
-);
 
 const BasicEmptyErrorOutputElement =
   document.getElementById("basic-empty-error");
@@ -161,7 +150,7 @@ showHidePreTimer();
 
 // If page was closed without choosing at least one Main (Basic)
 if (app.chosenChordsMain.length == 0) {
-  app.chosenChordsMain = ["C", "D", "E", "F", "G", "A", "B"]
+  app.chosenChordsMain = ["C", "D", "E", "F", "G", "A", "B"];
 }
 
 // -------- CREATE OBJECTS -------
