@@ -7,10 +7,12 @@ function enableDisableFullscreen() {
   if (!isFullscreenEnabled) {
     randomizerElement.classList.add("fullscreen");
     document.body.classList.add("fullscreen");
+    fullscreenBtn.children[0].textContent = "fullscreen_exit"
     isFullscreenEnabled = true;
   } else {
     randomizerElement.classList.remove("fullscreen");
     document.body.classList.remove("fullscreen");
+    fullscreenBtn.children[0].textContent = "fullscreen"
     isFullscreenEnabled = false;
   }
 }
