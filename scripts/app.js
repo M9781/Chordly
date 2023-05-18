@@ -1,6 +1,6 @@
-//*
-//*  Application main module
-//*
+//   ╔════════════════════════════════════════════════════╗
+//   ║                  App Main Module                   ║
+//   ╚════════════════════════════════════════════════════╝
 
 // ---------- DOCUMENT ELEMENTS ------------
 
@@ -37,17 +37,26 @@ const metronomeSignatureRadio = document.querySelectorAll(
   "#metronome-signature input"
 );
 
-const difficultyOptionsElements = {
-  basic: document.getElementById("difficulty-basic"),
-  medium: document.getElementById("difficulty-medium"),
-  intermediate: document.getElementById("difficulty-intermediate"),
-  advanced: document.getElementById("difficulty-advanced"),
+const optionsElements = {
+  main: document.getElementById("options-main"),
+  basic: document.getElementById("options-basic"),
+  medium: document.getElementById("options-medium"),
+  intermediate: document.getElementById("options-intermediate"),
+  advanced: document.getElementById("options-advanced"),
 };
 
-const BasicEmptyErrorOutputElement =
-  document.getElementById("basic-empty-error");
+const errorOutputElement = {
+  main: document.getElementById("main-empty-error"),
+  sufix: document.getElementById("sufix-empty-error"),
+};
+
+const emptyCLExceptionMsg = {
+  main: "You have to pick at least one Key chord!",
+  sufix: "You have to pick at least one type!",
+};
 
 const chordListElements = {
+  main: document.getElementById("main-chords-list"),
   basic: document.getElementById("basic-chords-list"),
   medium: document.getElementById("medium-chords-list"),
   intermediate: document.getElementById("intermediate-chords-list"),
@@ -63,15 +72,16 @@ let app = {
   showNextChord: true,
   showMetronome: true,
   showPreTimer: true,
-  repeatChord: 4,
-  chordDuration: 5,
+  repeatChord: 1,
+  chordDuration: 1,
   metronomeSignature: "44",
-  chosenChordsMain: [1, 2, 3, 4, 5, 6, 7],
-  chosenChordsSufix: [" ", " "], // adding 2 empty sufixes
+  chosenChordsMain: [1, 2, 4, 5, 7, 8, 9, 11, 12, 14, 15, 17],
+  chosenChordsSufix: [18],
 };
 
 // object containing OBJECTS of chosen chords
 const chosenChords = {
+  main: [],
   basic: [],
   medium: [],
   intermediate: [],
@@ -80,7 +90,7 @@ const chosenChords = {
 
 // object containning all the chords objects and its labels
 const chords = {
-  basic: [
+  main: [
     { id: 1, value: "C", label: "C" },
     { id: 2, value: "C#", label: "C#" },
     { id: 3, value: "D♭", label: "D♭" },
@@ -99,29 +109,32 @@ const chords = {
     { id: 16, value: "B♭", label: "B♭" },
     { id: 17, value: "B", label: "B" },
   ],
+  basic: [
+    { id: 18, value: " ", label: "Major" },
+    { id: 19, value: "m", label: "minor" },
+  ],
   medium: [
-    { id: 18, value: "m", label: "minor" },
-    { id: 19, value: "7", label: "dominant 7" },
-    { id: 20, value: "m7", label: "minor 7" },
-    { id: 21, value: "°", label: "diminished (°)" },
-    { id: 22, value: "+", label: "augmented (+)" },
+    { id: 20, value: "7", label: "dominant 7" },
+    { id: 21, value: "m7", label: "minor 7" },
+    { id: 22, value: "°", label: "diminished (°)" },
+    { id: 23, value: "+", label: "augmented (+)" },
   ],
   intermediate: [
-    { id: 23, value: "M7", label: "Major 7" },
-    { id: 24, value: "6", label: "6" },
-    { id: 25, value: "sus2", label: "suspended 2" },
-    { id: 26, value: "sus4", label: "suspended 4" },
-    { id: 27, value: "9", label: "9" },
-    { id: 28, value: "m9", label: "minor 9" },
+    { id: 24, value: "M7", label: "Major 7" },
+    { id: 25, value: "6", label: "6" },
+    { id: 26, value: "sus2", label: "suspended 2" },
+    { id: 27, value: "sus4", label: "suspended 4" },
+    { id: 28, value: "9", label: "9" },
+    { id: 29, value: "m9", label: "minor 9" },
   ],
   advanced: [
-    { id: 29, value: "11", label: "11" },
-    { id: 30, value: "m11", label: "minor 11" },
-    { id: 31, value: "13", label: "13" },
-    { id: 32, value: "6/9", label: "6/9" },
-    { id: 33, value: "7#5", label: "7Alt (7#5)" },
-    { id: 34, value: "°7", label: "diminished 7 (°7)" },
-    { id: 35, value: "m7♭5", label: "half-diminished (m7♭5)" },
+    { id: 30, value: "11", label: "11" },
+    { id: 31, value: "m11", label: "minor 11" },
+    { id: 32, value: "13", label: "13" },
+    { id: 33, value: "6/9", label: "6/9" },
+    { id: 34, value: "7#5", label: "7Alt (7#5)" },
+    { id: 35, value: "°7", label: "diminished 7 (°7)" },
+    { id: 36, value: "m7♭5", label: "half-diminished (m7♭5)" },
   ],
 };
 
@@ -148,9 +161,13 @@ showHideMetronome();
 showHideNextChord();
 showHidePreTimer();
 
-// If page was closed without choosing at least one Main (Basic)
+// If page was closed without choosing at least one Main
 if (app.chosenChordsMain.length == 0) {
-  app.chosenChordsMain = [1, 2, 3, 4, 5, 6, 7];
+  app.chosenChordsMain = [1, 2, 4, 5, 7, 8, 9, 11, 12, 14, 15, 17];
+}
+// If page was closed without choosing at least one Sufix
+if (app.chosenChordsSufix.length == 0) {
+  app.chosenChordsMain = [18];
 }
 
 // -------- CREATE OBJECTS -------

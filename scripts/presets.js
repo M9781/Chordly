@@ -1,3 +1,7 @@
+//   ╔════════════════════════════════════════════════════╗
+//   ║                   Presets Module                   ║
+//   ╚════════════════════════════════════════════════════╝
+
 //function creates a chord checkbox
 function createChordCheckbox(id, label, value, difficultyLevel) {
   const newCheckbox = document.createElement("input");
@@ -33,28 +37,24 @@ function generateCheckedCheckboxList(difficultyLevel) {
     }
     return checkedCheckbox;
   });
-  console.log(values);
   return values;
 }
 // event listener function - updates chosenChords list, app and cookies.
 function updateChosenChords(difficultyLevel) {
   const checkboxList = generateCheckedCheckboxList(difficultyLevel);
   chosenChords[difficultyLevel] = checkboxList;
-  console.log(chosenChords)
-  app.chosenChordsMain = chosenChords.basic.map((ccb) => ccb.id);
+  app.chosenChordsMain = chosenChords.main.map((cc) => cc.id);
   app.chosenChordsSufix = [].concat(
-    chosenChords.medium.map((ccm) => ccm.id),
-    chosenChords.intermediate.map((cci) => cci.id),
-    chosenChords.advanced.map((cca) => cca.id),
-    [" ", " "]
+    chosenChords.basic.map((cc) => cc.id),
+    chosenChords.medium.map((cc) => cc.id),
+    chosenChords.intermediate.map((cc) => cc.id),
+    chosenChords.advanced.map((cc) => cc.id)
   );
   passCookie("chosenChordsMain", app.chosenChordsMain);
   passCookie("chosenChordsSufix", app.chosenChordsSufix);
 
-  if (difficultyLevel == "basic") {
-    if (checkForBasicEmptyError()) {
-      stopRandomizer();
-    }
+  if (checkForEmptyCLException()) {
+    stopRandomizer();
   }
 }
 

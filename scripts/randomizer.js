@@ -1,29 +1,6 @@
-// returns random text, given a list of strings
-function generateText(list) {
-  const index = Math.floor(Math.random() * list.length);
-  return list[index];
-}
-
-//function returns a randomly generated chord
-function getRandomChord() {
-  const chordMainPart = chosenChords.basic.map((ccb) => ccb.value);
-  const chordSufix = [].concat(
-    chosenChords.medium.map((ccm) => ccm.value),
-    chosenChords.intermediate.map((cci) => cci.value),
-    chosenChords.advanced.map((cca) => cca.value),
-    [" ", " "]
-  );
-  //get random value whether to show a predefined or custom (only if both exist)
-
-  const randomChord = generateText(chordMainPart) + generateText(chordSufix);
-  return randomChord;
-}
-
-// function changes random chords to view in randomizer
-function changeText() {
-  firstChordElement.textContent = nextChordElement.textContent;
-  nextChordElement.textContent = getRandomChord(); //chordlist main + chordlist sufix
-}
+//   ╔════════════════════════════════════════════════════╗
+//   ║                Randomizer Module                   ║
+//   ╚════════════════════════════════════════════════════╝
 
 //disables or enables fullscreen mode
 function enableDisableFullscreen() {
@@ -38,30 +15,94 @@ function enableDisableFullscreen() {
   }
 }
 
-// At least 1 Main (Key/basic) chord has to be picked for Randomizer to run
-function checkForBasicEmptyError() {
+// ******************************************************
+//   Show or hide "Empty Chord List" Warning
+// ******************************************************
+
+// Checks if there is an empty array
+//   at least 1 Main and at least 1 suffix or custom chord
+//   has to be picked for Randomizer to run
+function checkForEmptyCLException() {
   if (app.chosenChordsMain.length == 0) {
-    if (isFullscreenEnabled) {
-      enableDisableFullscreen();
-    }
-    difficultyOptionsElements.basic.classList.add("warning");
-    difficultyOptionsElements.basic.scrollIntoView();
-    BasicEmptyErrorOutputElement.textContent =
-      "You have to pick at least one Basic chord!";
+    showEmptyCLError("main");
     return true;
-  } else {
-    difficultyOptionsElements.basic.classList.remove("warning");
-    BasicEmptyErrorOutputElement.textContent = "";
-    return false;
+  }
+  if (app.chosenChordsSufix.length == 0) {
+    //or  custom
+    showEmptyCLError("sufix");
+    return true;
+  }
+
+  hideEmptyCLError();
+  return false;
+}
+
+// Hides warning styling and message
+function hideEmptyCLError() {
+  for (element in optionsElements) {
+    optionsElements[element].classList.remove("warning");
+    errorOutputElement.main.textContent = "";
+    errorOutputElement.sufix.textContent = "";
   }
 }
 
-// at least 1 suffix or at least one custom chord has to be picked for Randomizer to run
-//function checkForSufixEmptyError() {
-//
-//}
+// Shows warning styling and message
+function showEmptyCLError(type) {
+  if (isFullscreenEnabled) {
+    enableDisableFullscreen();
+  }
 
-// separate functions for starting randomizer
+  for (element in optionsElements) {
+    if (type === "main" && element !== "main") {
+      continue;
+    }
+
+    if (type !== "main" && element === "main") {
+      continue;
+    }
+
+    optionsElements[element].classList.add("warning");
+    optionsElements[element].scrollIntoView();
+    errorOutputElement[type].textContent = emptyCLExceptionMsg[type];
+  }
+}
+
+// ******************************************************
+//   Generate Random Chords
+// ******************************************************
+
+// returns random text, given a list of strings
+function generateText(list) {
+  const index = Math.floor(Math.random() * list.length);
+  return list[index];
+}
+
+//function returns a randomly generated chord
+function getRandomChord() {
+  const chordMainPart = chosenChords.main.map((ccn) => ccn.value);
+  const chordSufix = [].concat(
+    chosenChords.basic.map((ccb) => ccb.value),
+    chosenChords.medium.map((ccm) => ccm.value),
+    chosenChords.intermediate.map((cci) => cci.value),
+    chosenChords.advanced.map((cca) => cca.value)
+  );
+  //get random value whether to show a predefined or custom (only if both exist)
+
+  const randomChord = generateText(chordMainPart) + generateText(chordSufix);
+  return randomChord;
+}
+
+// function changes random chords to view in randomizer
+function changeText() {
+  firstChordElement.textContent = nextChordElement.textContent;
+  nextChordElement.textContent = getRandomChord(); //chordlist main + chordlist sufix
+}
+
+// ******************************************************
+//   Start Randomizer
+// ******************************************************
+
+// separate function for starting randomizer
 function startRandomizer() {
   startBtn.children[0].textContent = "pause";
   randomizerInterval = setInterval(
@@ -81,7 +122,7 @@ function stopRandomizer() {
 //event listener function for startBtn
 function startStopRandomizer(event) {
   //wait for pretimer
-  if (checkForBasicEmptyError()) {
+  if (checkForEmptyCLException()) {
     return;
   }
 

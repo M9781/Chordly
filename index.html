@@ -19,10 +19,10 @@
     <!-- CSS -->
     <link rel="stylesheet" href="styles/commons.css" />
     <link rel="stylesheet" href="styles/style.css" />
-    <script src="scripts/commons.js" defer></script>
+    <script src="scripts/cookies.js" defer></script>
     <script src="scripts/randomizer.js" defer></script>
     <script src="scripts/metronome.js" defer></script>
-    <script src="scripts/config.js" defer></script>
+    <script src="scripts/presets.js" defer></script>
     <script src="scripts/app.js" defer></script>
 
     <!-- FAVICON -->
@@ -213,11 +213,37 @@
           </form>
         </div>
       </section>
+      <section id="main-key">
+        <h2>Main key</h2>
+        <p id="main-empty-error" class="error-output"></p>
+        <div class="options-wrapper single-column">
+          <div id="options-main" class="options">
+            <div class="options-header">
+              <h3>Key</h3>
+              <input
+                id="main-all"
+                name="main-all"
+                value="main-all"
+                type="checkbox"
+                class="checkbox-hidden"
+              />
+              <label for="main-all" class="checkbox-plus noselect"
+                ><span class="material-symbols-sharp">add</span></label
+              >
+            </div>
+            <div id="main-chords-list" class="chords-list">
+              <!-- Ta lista będzie generowana z arraya w js -->
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="difficulty">
         <h2>Difficulty</h2>
+        <p id="sufix-empty-error" class="error-output"></p>
         <div class="options-wrapper">
-          <div id="difficulty-basic" class="options">
-            <div class="difficulty-level-header">
+          <div id="options-basic" class="options">
+            <div class="options-header">
               <h3>Basic</h3>
               <input
                 id="basic-all"
@@ -230,13 +256,13 @@
                 ><span class="material-symbols-sharp">add</span></label
               >
             </div>
-            <p id="basic-empty-error"></p>
+            
             <div id="basic-chords-list" class="chords-list">
               <!-- Ta lista będzie generowana z arraya w js -->
             </div>
           </div>
-          <div id="difficulty-medium" class="options">
-            <div class="difficulty-level-header">
+          <div id="options-medium" class="options">
+            <div class="options-header">
               <h3>Medium</h3>
               <input
                 id="medium-all"
@@ -253,8 +279,8 @@
               <!--Ta lista będzie generowana z arraya w js (stwórz tyle obiektów ile jest w arrayu)-->
             </div>
           </div>
-          <div id="difficulty-intermediate" class="options">
-            <div class="difficulty-level-header">
+          <div id="options-intermediate" class="options">
+            <div class="options-header">
               <h3>Intermediate</h3>
               <input
                 id="intermediate-all"
@@ -271,8 +297,8 @@
               <!--Ta lista będzie generowana z arraya w js -->
             </div>
           </div>
-          <div id="difficulty-advanced" class="options">
-            <div class="difficulty-level-header">
+          <div id="options-advanced" class="options">
+            <div class="options-header">
               <h3>Advanced</h3>
               <input
                 id="advanced-all"

@@ -1,3 +1,7 @@
+//   ╔════════════════════════════════════════════════════╗
+//   ║             Cookies management Module              ║
+//   ╚════════════════════════════════════════════════════╝
+
 // function returns a parsed cookie.
 function getCookie(name) {
   const cookies = document.cookie.split(";");
