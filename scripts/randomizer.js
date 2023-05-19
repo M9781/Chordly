@@ -7,12 +7,12 @@ function enableDisableFullscreen() {
   if (!isFullscreenEnabled) {
     randomizerElement.classList.add("fullscreen");
     document.body.classList.add("fullscreen");
-    fullscreenBtn.children[0].textContent = "fullscreen_exit"
+    fullscreenBtn.children[0].textContent = "fullscreen_exit";
     isFullscreenEnabled = true;
   } else {
     randomizerElement.classList.remove("fullscreen");
     document.body.classList.remove("fullscreen");
-    fullscreenBtn.children[0].textContent = "fullscreen"
+    fullscreenBtn.children[0].textContent = "fullscreen";
     isFullscreenEnabled = false;
   }
 }
@@ -112,6 +112,10 @@ function startRandomizer() {
     app.repeatChord * app.chordDuration * 1000
   );
   isRandomizerRunning = true;
+  //turn on metronome
+  if (app.showMetronome) {
+    startMetronome();
+  }
 }
 
 // separate function for stoping randomizer
@@ -119,6 +123,7 @@ function stopRandomizer() {
   startBtn.children[0].textContent = "play_arrow";
   clearInterval(randomizerInterval);
   isRandomizerRunning = false;
+  stopMetronome();
 }
 
 //event listener function for startBtn
@@ -130,9 +135,7 @@ function startStopRandomizer(event) {
 
   if (!isRandomizerRunning) {
     startRandomizer();
-    //turn on metronome (if app.showmetronome)
   } else {
     stopRandomizer();
-    //turn off metronome (if app.showmetronome)
   }
 }

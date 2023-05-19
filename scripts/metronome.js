@@ -11,12 +11,14 @@
 
 // Launches metronome
 function startMetronome() {
+  changeBeep()
   metronomeInterval = setInterval(changeBeep, getSignatureTime());
 }
 
 // stops metronome
 function stopMetronome() {
   clearInterval(metronomeInterval);
+  i = 1;
 }
 
 // ******************************************************
@@ -75,9 +77,11 @@ function getFractionsNumber() {
 }
 
 function getSignatureTime() {
-  Math.floor(
-    ((app.chordDuration * 1000) / getFractionsNumber()) * getBeatsNumber()
+
+  const signatureTime = Math.floor(
+    ((app.chordDuration * 1000) / getFractionsNumber()) * (getFractionsNumber()/ getBeatsNumber())
   );
+  return signatureTime;
 }
 
 //divide through metronome sequences number

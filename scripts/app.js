@@ -159,11 +159,10 @@ if (cookiesExist) {
   loadDefaultCookies();
 }
 
-setBeepsVisibility()
+setBeepsVisibility();
 showHideMetronome();
 showHideNextChord();
 showHidePreTimer();
-
 
 // If page was closed without choosing at least one Main
 if (app.chosenChordsMain.length == 0) {
@@ -248,6 +247,11 @@ for (const difficultyLevel in chordListElements) {
 
 showMetronomeSwitch.addEventListener("change", function (event) {
   updateCookie("showMetronome", event.target.checked);
+  if (isRandomizerRunning) {
+    stopRandomizer();
+    startRandomizer();
+  }
+
   showHideMetronome();
 });
 
@@ -273,6 +277,10 @@ chordDurationBar.addEventListener("input", function (event) {
 for (let radioControl of metronomeSignatureRadio) {
   radioControl.addEventListener("change", function (event) {
     updateCookie("metronomeSignature", event.target.value);
-    setBeepsVisibility()
+    if (isRandomizerRunning) {
+      stopRandomizer();
+      startRandomizer();
+    }
+    setBeepsVisibility();
   });
 }
