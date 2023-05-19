@@ -37,12 +37,14 @@ main {
 #first-chord {
   font-size: 20em;
   font-weight: bold;
+  height: 10rem;
   margin: 0;
   text-shadow: 2px 2px 1px rgb(0, 0, 0, 0.2);
   color: beige;
 }
 #next-chord {
   font-size: 5rem;
+  height: 3.5rem;
   font-weight: bold;
   color: beige;
   text-shadow: 2px 2px 1px rgb(0, 0, 0, 0.2);
