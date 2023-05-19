@@ -122,20 +122,18 @@
               </li>
             </ul>
           </div>
-          <div id="chord-duration" class="options">
-            <h3>Chord duration</h3>
-            <div id="chord-bar" class="slide-container">
+          <div id="BPM" class="options">
+            <h3>Beats per minute</h3>
+            <div id="BPM-bar" class="slide-container">
               <input
                 type="range"
-                min="1"
-                max="100"
-                value="5"
+                min="20"
+                max="180"
+                value="60"
                 class="slider-bar"
-                id="chord-range"
+                id="BPM-range"
               />
-              <label for="chord-range"
-                ><span id="chord-duration-value">4</span> s</label
-              >
+              <label for="BPM-range"><span id="BPM-value">20</span> BPM</label>
             </div>
           </div>
           <div id="metronome-time" class="options">
@@ -144,8 +142,8 @@
               <input
                 type="range"
                 min="1"
-                max="100"
-                value="50"
+                max="200"
+                value="1"
                 class="slider-bar"
                 id="metronome-range"
               />
@@ -256,7 +254,7 @@
                 ><span class="material-symbols-sharp">add</span></label
               >
             </div>
-            
+
             <div id="basic-chords-list" class="chords-list">
               <!-- Ta lista będzie generowana z arraya w js -->
             </div>

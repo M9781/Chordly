@@ -109,7 +109,7 @@ function startRandomizer() {
   startBtn.children[0].textContent = "pause";
   randomizerInterval = setInterval(
     changeText,
-    app.repeatChord * app.chordDuration * 1000
+    app.repeatChord * (60 / app.BPM) * 1000 * getFractionsNumber()
   );
   isRandomizerRunning = true;
   //turn on metronome

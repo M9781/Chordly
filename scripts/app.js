@@ -32,11 +32,17 @@ const metronomeSignatureOptionsElement = document.getElementById(
 
 const repeatChordBar = document.getElementById("metronome-range");
 const repeatChordBarLabel = document.getElementById("metronome-time-value");
-const chordDurationBar = document.getElementById("chord-range");
-const chordDurationBarLabel = document.getElementById("chord-duration-value");
+const BPMBar = document.getElementById("BPM-range");
+const BPMBarLabel = document.getElementById("BPM-value");
 const metronomeSignatureRadio = document.querySelectorAll(
   "#metronome-signature input"
 );
+
+const section = {
+  presets: document.getElementById("presets"),
+  main: document.getElementById("main-key"),
+  sufix: document.getElementById("difficulty"),
+};
 
 const optionsElements = {
   main: document.getElementById("options-main"),
@@ -74,7 +80,7 @@ let app = {
   showMetronome: true,
   showPreTimer: true,
   repeatChord: 1,
-  chordDuration: 1,
+  BPM: 60,
   metronomeSignature: "44",
   chosenChordsMain: [1, 2, 4, 5, 7, 8, 9, 11, 12, 14, 15, 17],
   chosenChordsSufix: [18],
@@ -217,11 +223,11 @@ showPreTimerSwitch.checked = app.showPreTimer;
 
 // set initial values of other presets
 repeatChordBar.value = app.repeatChord;
-chordDurationBar.value = app.chordDuration;
+BPMBar.value = app.BPM;
 document.querySelector("#metronome-" + app.metronomeSignature).checked = true;
 // set initial value of bar labels
 repeatChordBarLabel.textContent = app.repeatChord;
-chordDurationBarLabel.textContent = app.chordDuration;
+BPMBarLabel.textContent = app.BPM;
 
 // -------- EVENT LISTENERS ---------
 
@@ -269,9 +275,9 @@ repeatChordBar.addEventListener("input", function (event) {
   updateCookie("repeatChord", event.target.value);
   repeatChordBarLabel.textContent = event.target.value;
 });
-chordDurationBar.addEventListener("input", function (event) {
-  updateCookie("chordDuration", event.target.value);
-  chordDurationBarLabel.textContent = event.target.value;
+BPMBar.addEventListener("input", function (event) {
+  updateCookie("BPM", event.target.value);
+  BPMBarLabel.textContent = event.target.value;
 });
 
 for (let radioControl of metronomeSignatureRadio) {

@@ -11,7 +11,7 @@
 
 // Launches metronome
 function startMetronome() {
-  changeBeep()
+  changeBeep();
   metronomeInterval = setInterval(changeBeep, getSignatureTime());
 }
 
@@ -77,9 +77,9 @@ function getFractionsNumber() {
 }
 
 function getSignatureTime() {
-
   const signatureTime = Math.floor(
-    ((app.chordDuration * 1000) / getFractionsNumber()) * (getFractionsNumber()/ getBeatsNumber())
+    (((60 / app.BPM) * 1000)) *
+      (getFractionsNumber() / getBeatsNumber())
   );
   return signatureTime;
 }
