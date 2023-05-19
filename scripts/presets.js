@@ -71,10 +71,10 @@ function checkAllCheckboxes(event, difficultyLevel) {
 // Show or hide Metronome
 function showHideMetronome() {
   if (app.showMetronome) {
-    metronome.visualMetronome.style.display = "block";
+    visualMetronome.style.display = "block";
     metronomeSignatureOptionsElement.style.display = "inline-block";
   } else {
-    metronome.visualMetronome.style.display = "none";
+    visualMetronome.style.display = "none";
     metronomeSignatureOptionsElement.style.display = "none";
   }
 }

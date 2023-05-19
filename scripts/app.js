@@ -6,8 +6,9 @@
 
 const firstChordElement = document.getElementById("first-chord");
 const nextChordElement = document.getElementById("next-chord");
+const visualMetronome = document.getElementById("metronome");
+
 const metronome = {
-  visualMetronome: document.getElementById("metronome"),
   beep1: document.getElementById("beep1"),
   beep2: document.getElementById("beep2"),
   beep3: document.getElementById("beep3"),
@@ -138,8 +139,9 @@ const chords = {
   ],
 };
 
-// variable holding interval object
+// variables holding interval object
 let randomizerInterval;
+let metronomeInterval;
 
 // Metronome sounds
 let MetronomeSoundDown = new Audio("sounds/Metronome.wav");
@@ -157,9 +159,11 @@ if (cookiesExist) {
   loadDefaultCookies();
 }
 
+setBeepsVisibility()
 showHideMetronome();
 showHideNextChord();
 showHidePreTimer();
+
 
 // If page was closed without choosing at least one Main
 if (app.chosenChordsMain.length == 0) {
@@ -269,5 +273,6 @@ chordDurationBar.addEventListener("input", function (event) {
 for (let radioControl of metronomeSignatureRadio) {
   radioControl.addEventListener("change", function (event) {
     updateCookie("metronomeSignature", event.target.value);
+    setBeepsVisibility()
   });
 }

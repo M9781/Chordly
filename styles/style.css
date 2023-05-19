@@ -64,7 +64,7 @@ main {
 
 #randomizer-options {
   display: grid;
-  grid-template-columns: 2fr 1fr 2fr;
+  grid-template-columns: 2fr 5rem 2fr;
 }
 
 #randomizer-left-column {
@@ -96,8 +96,8 @@ main {
 
 .randomizer-button {
   height: 100%;
-  display: inline-block;
-  margin: 0 2px;
+  display: block;
+  margin: 0 1rem;
   background: none;
   border: none;
   color: rgb(49, 49, 49);
