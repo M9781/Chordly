@@ -208,9 +208,11 @@ main {
 @media (max-width: 1000px) {
   #first-chord {
     font-size: 15em;
+    height: 19rem;
   }
   #next-chord {
     font-size: 6em;
+    height: 7rem;
   }
 }
 
@@ -221,17 +223,21 @@ main {
 
   #first-chord {
     font-size: 10em;
+    height: 13rem;
   }
   #next-chord {
     font-size: 4em;
+    height: 5rem;
   }
 }
 
 @media (max-width: 500px) {
   #first-chord {
     font-size: 8em;
+    height: 11rem;
   }
   #next-chord {
     font-size: 3em;
+    height: 3rem;
   }
 }
