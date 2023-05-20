@@ -64,9 +64,9 @@ function showEmptyCLError(type) {
     }
 
     optionsElements[element].classList.add("warning");
-    optionsElements[element].scrollIntoView();
-    errorOutputElement[type].textContent = emptyCLExceptionMsg[type];
   }
+  section[type].scrollIntoView();
+  errorOutputElement[type].textContent = emptyCLExceptionMsg[type];
 }
 
 // ******************************************************

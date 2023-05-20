@@ -39,6 +39,7 @@ function generateCheckedCheckboxList(difficultyLevel) {
   });
   return values;
 }
+
 // event listener function - updates chosenChords list, app and cookies.
 function updateChosenChords(difficultyLevel) {
   const checkboxList = generateCheckedCheckboxList(difficultyLevel);
@@ -78,6 +79,7 @@ function showHideMetronome() {
     metronomeSignatureOptionsElement.style.display = "none";
   }
 }
+
 // Show or hide Next Chord
 function showHideNextChord() {
   if (app.showNextChord) {
