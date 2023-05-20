@@ -10,7 +10,7 @@
 // ******************************************************
 
 // Launches metronome
-function startMetronome() {
+async function startMetronome() {
   changeBeep();
   metronomeInterval = setInterval(changeBeep, getSignatureTime());
 }

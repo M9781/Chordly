@@ -34,17 +34,26 @@ main {
   display: none;
 }
 
-#first-chord {
-  font-size: 20em;
+#pre-timer p {
+  font-size: 30rem;
+  height: 36rem;
   font-weight: bold;
-  height: 10rem;
+  margin: 0;
+  text-shadow: 2px 2px 1px rgb(0, 0, 0, 0.2);
+  color: rgb(49, 49, 49);
+}
+
+#first-chord {
+  font-size: 20rem;
+  font-weight: bold;
+  height: 24rem;
   margin: 0;
   text-shadow: 2px 2px 1px rgb(0, 0, 0, 0.2);
   color: beige;
 }
 #next-chord {
   font-size: 5rem;
-  height: 3.5rem;
+  height: 6rem;
   font-weight: bold;
   color: beige;
   text-shadow: 2px 2px 1px rgb(0, 0, 0, 0.2);
@@ -52,7 +61,8 @@ main {
 }
 
 #metronome {
-  margin: 5px 0;
+  margin: 0;
+  height: 6rem
 }
 
 .beep {
@@ -214,6 +224,12 @@ main {
     font-size: 6em;
     height: 7rem;
   }
+  #pre-timer p {
+    font-size: 20rem;
+    height: 26rem;
+  }
+
+
 }
 
 @media (max-width: 860px) {
@@ -229,6 +245,10 @@ main {
     font-size: 4em;
     height: 5rem;
   }
+  #pre-timer p {
+    font-size: 18em;
+    height: 24rem;
+  }
 }
 
 @media (max-width: 500px) {
@@ -240,4 +260,9 @@ main {
     font-size: 3em;
     height: 3rem;
   }
+  #pre-timer p {
+    font-size: 15em;
+    height: 20rem;
+  }
+
 }

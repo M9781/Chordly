@@ -112,7 +112,7 @@ function startRandomizer() {
     app.repeatChord * (60 / app.BPM) * 1000 * getFractionsNumber()
   );
   isRandomizerRunning = true;
-  //turn on metronome
+
   if (app.showMetronome) {
     startMetronome();
   }
@@ -123,19 +123,59 @@ function stopRandomizer() {
   startBtn.children[0].textContent = "play_arrow";
   clearInterval(randomizerInterval);
   isRandomizerRunning = false;
+  stopPreTimer();
   stopMetronome();
 }
 
 //event listener function for startBtn
-function startStopRandomizer(event) {
+async function startStopRandomizer(event) {
   //wait for pretimer
   if (checkForEmptyCLException()) {
     return;
   }
 
   if (!isRandomizerRunning) {
+    if (app.showPreTimer) {
+      startPreTimer();
+      await new Promise((r) => setTimeout(r, 3000));
+    }
+
     startRandomizer();
   } else {
     stopRandomizer();
   }
 }
+
+// ******************************************************
+//   Pre-timer
+// ******************************************************
+
+async function startPreTimer() {
+  preTimerElement.style.display = "block";
+  firstChordElement.style.display = "none";
+  nextChordElement.style.display = "none";
+  visualMetronome.style.display = "none";
+
+  timerInterval = setInterval(changeNumber, 1000);
+}
+
+function stopPreTimer() {
+  clearInterval(timerInterval);
+  preTimerElement.style.display = "none";
+  firstChordElement.style.display = "block";
+  nextChordElement.style.display = "block";
+  visualMetronome.style.display = "block";
+  round = 3;
+  preTimerElement.children[0].textContent = round;
+}
+
+function changeNumber() {
+  round--;
+  if (round < 1) {
+    stopPreTimer();
+    return;
+  }
+  preTimerElement.children[0].textContent = round;
+}
+
+let round = 3;

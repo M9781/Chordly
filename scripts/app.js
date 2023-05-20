@@ -17,6 +17,8 @@ const metronome = {
   beep6: document.getElementById("beep6"),
 };
 
+const preTimerElement = document.getElementById("pre-timer");
+
 const startBtn = document.getElementById("start-btn");
 const fullscreenBtn = document.getElementById("fullscreen-btn");
 
@@ -148,6 +150,7 @@ const chords = {
 // variables holding interval object
 let randomizerInterval;
 let metronomeInterval;
+let timerInterval;
 
 // Metronome sounds
 let MetronomeSoundDown = new Audio("sounds/Metronome.wav");
@@ -210,6 +213,7 @@ for (let chord of initialChordList) {
 for (let difficultyLevel in chosenChords) {
   updateChosenChords(difficultyLevel);
 }
+
 updateChosenChords();
 
 //set initial values of randomizer chords
