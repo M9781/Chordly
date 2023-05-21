@@ -7,6 +7,7 @@
 const firstChordElement = document.getElementById("first-chord");
 const nextChordElement = document.getElementById("next-chord");
 const visualMetronome = document.getElementById("metronome");
+const preTimerElement = document.getElementById("pre-timer");
 
 const metronome = {
   beep1: document.getElementById("beep1"),
@@ -16,8 +17,6 @@ const metronome = {
   beep5: document.getElementById("beep5"),
   beep6: document.getElementById("beep6"),
 };
-
-const preTimerElement = document.getElementById("pre-timer");
 
 const startBtn = document.getElementById("start-btn");
 const fullscreenBtn = document.getElementById("fullscreen-btn");
@@ -81,6 +80,7 @@ const chordProgressElement = document.getElementById("chord-progress");
 // --------- DEFAULT VALUES ------------
 let isFullscreenEnabled = false;
 let isRandomizerRunning = false;
+let isPreTimerRunning = false
 
 let app = {
   cookiesExist: true,
@@ -178,7 +178,6 @@ if (cookiesExist) {
 setBeepsVisibility();
 showHideMetronome();
 showHideNextChord();
-showHidePreTimer();
 
 // If page was closed without choosing at least one Main
 if (app.chosenChordsMain.length == 0) {
@@ -274,12 +273,11 @@ showMetronomeSwitch.addEventListener("change", function (event) {
 
 showNextChordSwitch.addEventListener("change", function (event) {
   updateCookie("showNextChord", event.target.checked);
-  showHideNextChord();
+  NextChord();
 });
 
 showPreTimerSwitch.addEventListener("change", function (event) {
   updateCookie("showPreTimer", event.target.checked);
-  showHidePreTimer();
 });
 
 repeatChordBar.addEventListener("input", function (event) {

@@ -89,9 +89,3 @@ function showHideNextChord() {
   }
 }
 
-function showHidePreTimer() {
-  //will be developed in the future
-  if (app.showPreTimer) {
-  } else {
-  }
-}

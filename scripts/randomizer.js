@@ -55,13 +55,8 @@ function showEmptyCLError(type) {
   }
 
   for (element in optionsElements) {
-    if (type === "main" && element !== "main") {
-      continue;
-    }
-
-    if (type !== "main" && element === "main") {
-      continue;
-    }
+    if (type === "main" && element !== "main") continue;
+    if (type !== "main" && element === "main") continue;
 
     optionsElements[element].classList.add("warning");
   }
@@ -105,17 +100,21 @@ function changeText() {
 // ******************************************************
 
 // separate function for starting randomizer
-function startRandomizer() {
+async function startRandomizer() {
   startBtn.children[0].textContent = "pause";
+  isRandomizerRunning = true;
+  if (app.showPreTimer) {
+    startPreTimer();
+    await new Promise((r) => setTimeout(r, 3000));
+  }
+
   randomizerInterval = setInterval(
     changeText,
     app.repeatChord * (60 / app.BPM) * 1000 * getFractionsNumber()
   );
-  isRandomizerRunning = true;
+  
 
-  if (app.showMetronome) {
-    startMetronome();
-  }
+  if (app.showMetronome) startMetronome();
 }
 
 // separate function for stoping randomizer
@@ -128,89 +127,13 @@ function stopRandomizer() {
 }
 
 //event listener function for startBtn
-async function startStopRandomizer(event) {
+function startStopRandomizer(event) {
   //wait for pretimer
-  if (checkForEmptyCLException()) {
-    return;
-  }
+  if (checkForEmptyCLException()) return;
 
   if (!isRandomizerRunning) {
-    if (app.showPreTimer) {
-      startPreTimer();
-      await new Promise((r) => setTimeout(r, 3000));
-    }
-
     startRandomizer();
   } else {
     stopRandomizer();
   }
 }
-
-// ******************************************************
-//   Pre-timer
-// ******************************************************
-
-function startPreTimer() {
-  preTimerElement.style.display = "block";
-  firstChordElement.style.display = "none";
-  nextChordElement.style.display = "none";
-  visualMetronome.style.display = "none";
-  randomizerOptions.style.display = "none";
-  changeProgress(countdownProgressElement);
-  timerInterval = setInterval(changeNumber, 1000);
-}
-
-function stopPreTimer() {
-  clearInterval(timerInterval);
-  preTimerElement.style.display = "none";
-  firstChordElement.style.display = "block";
-  nextChordElement.style.display = "block";
-  visualMetronome.style.display = "block";
-  randomizerOptions.style.display = "grid";
-  round = 3;
-  preTimerElement.children[0].textContent = round;
-  stopProgress(countdownProgressElement);
-}
-
-function changeNumber() {
-  round--;
-  changeProgress(countdownProgressElement);
-  if (round < 1) {
-    stopPreTimer();
-    return;
-  }
-  preTimerElement.children[0].textContent = round;
-}
-
-let round = 3;
-
-// emulate progress attribute change
-// const el = document.querySelector('progress-ring');
-
-function startProgress(el, ms) {
-  progressInterval = setInterval(() => {
-    changeProgress(el);
-  }, ms);
-}
-
-function changeProgress(el) {
-  progress += (1 / 3) * 100;
-  el.setAttribute("progress", progress);
-  if (progress >= 100) {
-    stopProgress(countdownProgressElement);
-  }
-}
-
-function stopProgress(el) {
-  clearInterval(progressInterval);
-  progress = 0;
-  el.setAttribute("progress", progress);
-}
-
-// countdownInterval = setInterval(() => {
-//   progress += 10;
-//   el.setAttribute("progress", progress);
-//   if (progress === 100) clearInterval(countdownInterval);
-// }, 1000);
-
-let progress = 0;
