@@ -62,7 +62,7 @@ main {
 
 #metronome {
   margin: 0;
-  height: 6rem
+  height: 6rem;
 }
 
 .beep {
@@ -228,8 +228,6 @@ main {
     font-size: 20rem;
     height: 26rem;
   }
-
-
 }
 
 @media (max-width: 860px) {
@@ -264,5 +262,4 @@ main {
     font-size: 15em;
     height: 20rem;
   }
-
 }

@@ -19,6 +19,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="styles/commons.css" />
     <link rel="stylesheet" href="styles/style.css" />
+    <script src="scripts/progress-ring.js" defer></script>
     <script src="scripts/cookies.js" defer></script>
     <script src="scripts/randomizer.js" defer></script>
     <script src="scripts/metronome.js" defer></script>
@@ -47,6 +48,7 @@
       <section id="randomizer">
         <aside id="pre-timer">
           <p>3</p>
+          <progress-ring stroke="4" radius="60" progress="0" id="countdown-progress"></progress-ring>
         </aside>
 
         <p id="first-chord">D</p>
@@ -61,7 +63,9 @@
         </div>
 
         <div id="randomizer-options">
-          <div id="randomizer-left-column"></div>
+          <div id="randomizer-left-column">
+            <!-- <progress-ring stroke="4" radius="60" progress="0" id="chord-progress"> 4 </progress-ring> -->
+          </div>
           <div>
             <button id="start-btn">
               <span class="material-symbols-sharp filled">play_arrow</span>

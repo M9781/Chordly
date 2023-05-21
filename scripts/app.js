@@ -23,6 +23,7 @@ const startBtn = document.getElementById("start-btn");
 const fullscreenBtn = document.getElementById("fullscreen-btn");
 
 const randomizerElement = document.getElementById("randomizer");
+const randomizerOptions = document.getElementById("randomizer-options");
 
 const showMetronomeSwitch = document.getElementById("show-metronome");
 const showNextChordSwitch = document.getElementById("show-upc-chord");
@@ -71,6 +72,11 @@ const chordListElements = {
   intermediate: document.getElementById("intermediate-chords-list"),
   advanced: document.getElementById("advanced-chords-list"),
 };
+
+window.customElements.define("progress-ring", ProgressRing);
+
+const countdownProgressElement = document.getElementById("countdown-progress");
+const chordProgressElement = document.getElementById("chord-progress");
 
 // --------- DEFAULT VALUES ------------
 let isFullscreenEnabled = false;
@@ -151,6 +157,7 @@ const chords = {
 let randomizerInterval;
 let metronomeInterval;
 let timerInterval;
+let progressInterval;
 
 // Metronome sounds
 let MetronomeSoundDown = new Audio("sounds/Metronome.wav");
