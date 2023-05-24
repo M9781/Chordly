@@ -72,15 +72,16 @@ const chordListElements = {
   advanced: document.getElementById("advanced-chords-list"),
 };
 
-window.customElements.define("progress-ring", ProgressRing);
+const countdownProgressCircle =
+  document.getElementById("countdown-progress").children[0];
+//const chordProgressCircle = document.getElementById("chord-progress").children[0];
 
-const countdownProgressElement = document.getElementById("countdown-progress");
-const chordProgressElement = document.getElementById("chord-progress");
+
 
 // --------- DEFAULT VALUES ------------
 let isFullscreenEnabled = false;
 let isRandomizerRunning = false;
-let isPreTimerRunning = false
+let isPreTimerRunning = false;
 
 let app = {
   cookiesExist: true,
@@ -178,6 +179,9 @@ if (cookiesExist) {
 setBeepsVisibility();
 showHideMetronome();
 showHideNextChord();
+setRadius(countdownProgressCircle);
+
+
 
 // If page was closed without choosing at least one Main
 if (app.chosenChordsMain.length == 0) {
@@ -299,3 +303,17 @@ for (let radioControl of metronomeSignatureRadio) {
     setBeepsVisibility();
   });
 }
+
+window.addEventListener("resize", (event) => {
+  setRadius(countdownProgressCircle)
+  setProgress(countdownProgressCircle, progress)
+}
+)
+
+// preTimerElement.style.display = "block";
+// firstChordElement.style.display = "none";
+// nextChordElement.style.display = "none";
+// visualMetronome.style.display = "none";
+// randomizerOptions.style.display = "none";
+// setProgress(countdownProgressCircle, 100);
+// preTimerElement.children[0].textContent = 3

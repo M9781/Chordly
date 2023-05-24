@@ -32,15 +32,43 @@ main {
 
 #pre-timer {
   display: none;
+  position: relative;
+  height: 41rem;
 }
 
 #pre-timer p {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   font-size: 30rem;
-  height: 36rem;
   font-weight: bold;
   margin: 0;
   text-shadow: 2px 2px 1px rgb(0, 0, 0, 0.2);
   color: rgb(49, 49, 49);
+}
+
+#countdown-progress {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 600px;
+  width: 600px;
+}
+
+circle {
+  transition: 1s stroke-dashoffset;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  stroke: rgb(49, 49, 49);
+  filter: drop-shadow(-2px 2px 1px rgb(0 0 0 / 0.2));
+}
+
+#countdown-progress circle {
+  cx: 300px;
+  cy: 300px;
+  stroke-width: 1.5rem;
 }
 
 #first-chord {
@@ -76,6 +104,7 @@ main {
 
 #randomizer-options {
   display: grid;
+  height: 5rem;
   grid-template-columns: 2fr 5rem 2fr;
 }
 
@@ -88,12 +117,14 @@ main {
 
 #start-btn {
   color: rgb(49, 49, 49);
+  display: block;
   border: 5px solid rgb(49, 49, 49);
   background: none;
   border-radius: 50%;
   height: 5rem;
   width: 5rem;
-  margin: 5px 0;
+  margin: auto 0;
+  padding: 0;
 }
 
 #start-btn span {
@@ -215,6 +246,7 @@ main {
   }
 }
 
+/* 11 */
 @media (max-width: 1000px) {
   #first-chord {
     font-size: 15em;
@@ -225,8 +257,19 @@ main {
     height: 7rem;
   }
   #pre-timer p {
-    font-size: 20rem;
-    height: 26rem;
+    font-size: 23rem;
+  }
+  #pre-timer {
+    height: 37rem;
+  }
+  #countdown-progress {
+    height: 500px;
+    width: 500px;
+  }
+  #countdown-progress circle {
+    cx: 250px;
+    cy: 250px;
+    stroke-width: 1.2rem;
   }
 }
 
@@ -244,8 +287,19 @@ main {
     height: 5rem;
   }
   #pre-timer p {
-    font-size: 18em;
-    height: 24rem;
+    font-size: 20em;
+  }
+  #pre-timer {
+    height: 29rem;
+  }
+  #countdown-progress {
+    height: 440px;
+    width: 440px;
+  }
+  #countdown-progress circle {
+    cx: 220px;
+    cy: 220px;
+    stroke-width: 1.2rem;
   }
 }
 
@@ -260,6 +314,17 @@ main {
   }
   #pre-timer p {
     font-size: 15em;
-    height: 20rem;
+  }
+  #pre-timer {
+    height: 25rem;
+  }
+  #countdown-progress {
+    height: 320px;
+    width: 320px;
+  }
+  #countdown-progress circle {
+    cx: 160px;
+    cy: 160px;
+    stroke-width: 1rem;
   }
 }

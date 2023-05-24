@@ -19,6 +19,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="styles/commons.css" />
     <link rel="stylesheet" href="styles/style.css" />
+    <!-- JS -->
     <script src="scripts/progress-ring.js" defer></script>
     <script src="scripts/countdown.js" defer></script>
     <script src="scripts/cookies.js" defer></script>
@@ -49,7 +50,14 @@
       <section id="randomizer">
         <aside id="pre-timer">
           <p>3</p>
-          <progress-ring stroke="4" radius="60" progress="0" id="countdown-progress"></progress-ring>
+          <!-- <progress-ring stroke="4" radius="60" progress="0" id="chord-progress"> 4 </progress-ring>  -->
+          <svg class="progress-ring" id="countdown-progress">
+            <circle
+              class="progress-ring__circle"
+              stroke-width="15px"
+              fill="transparent"
+            />
+          </svg>
         </aside>
 
         <p id="first-chord">D</p>

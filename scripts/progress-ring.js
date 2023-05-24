@@ -1,52 +1,63 @@
-class ProgressRing extends HTMLElement {
-  constructor() {
-    super();
-    const stroke = this.getAttribute("stroke");
-    const radius = this.getAttribute("radius");
-    const normalizedRadius = radius - stroke * 2;
-    this._circumference = normalizedRadius * 2 * Math.PI;
+// class progressRing extends HTMLElement {
+//   constructor() {
+//     super();
+//     this.circumference = 
+//     this.radius = 
+//     this.strokeWidth = 
+//   }
 
-    this._root = this.attachShadow({ mode: "open" });
-    this._root.innerHTML = `
-        <svg
-          height="${radius * 2}"
-          width="${radius * 2}"
-         >
-           <circle
-             stroke="white"
-             stroke-dasharray="${this._circumference} ${this._circumference}"
-             style="stroke-dashoffset:${this._circumference}"
-             stroke-width="${stroke}"
-             fill="transparent"
-             r="${normalizedRadius}"
-             cx="${radius}"
-             cy="${radius}"
-          />
-        </svg>
-  
-        <style>
-          circle {
-            transition: stroke-dashoffset 0.7s;
-            transform: rotate(-90deg);
-            transform-origin: 50% 50%;
-          }
-        </style>
-      `;
-  }
+//   getCircumference(radius) {
+//     radius * 2 * Math.PI
 
-  setProgress(percent) {
-    const offset = this._circumference - (percent / 100) * this._circumference;
-    const circle = this._root.querySelector("circle");
-    circle.style.strokeDashoffset = offset;
-  }
+//   }
+//   setStrokeDash(circumference) {
+//     circle.style.strokeDasharray = `${circumference} ${circumference}`;
+//     circle.style.strokeDashoffset = `${circumference}`;
+//   }
 
-  static get observedAttributes() {
-    return ["progress"];
-  }
+//   setRadius() {
+//     const cx = parseFloat(getComputedStyle(circle).cx, 10);
+//     const strokeWidth = parseFloat(getComputedStyle(circle).strokeWidth, 10);
+//     const radius = cx - strokeWidth * 2;
+//     circle.style.r = `${radius}`;
+//     const circumference = radius * 2 * Math.PI;
+//     setStrokeDash(circle, circumference);
+//   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
-    if (name === "progress") {
-      this.setProgress(newValue);
-    }
-  }
+//   setProgress(percent) {
+//     if (percent >= 100) percent = 100;
+//     const radius = parseFloat(getComputedStyle(circle).r, 10);
+//     const circumference = radius * 2 * Math.PI;
+//     const offset = circumference - (percent / 100) * circumference;
+//     circle.style.strokeDashoffset = offset;
+//   }
+// }
+
+
+
+
+function setStrokeDash(circle, circumference) {
+  circle.style.strokeDasharray = `${circumference} ${circumference}`;
+  circle.style.strokeDashoffset = `${circumference}`;
 }
+
+function setRadius(circle) {
+  const cx = parseFloat(getComputedStyle(circle).cx, 10);
+  const strokeWidth = parseFloat(getComputedStyle(circle).strokeWidth, 10);
+  const radius = cx - strokeWidth * 2;
+  circle.style.r = `${radius}`;
+  const circumference = radius * 2 * Math.PI;
+  setStrokeDash(circle, circumference);
+}
+
+function setProgress(circle, percent) {
+  if (percent >= 100) percent = 100;
+  const radius = parseFloat(getComputedStyle(circle).r, 10);
+  const circumference = radius * 2 * Math.PI;
+  const offset = circumference - (percent / 100) * circumference;
+  circle.style.strokeDashoffset = offset;
+}
+
+//setRadius(circle);
+//console.log(circle);
+//console.log(document.getElementById("countdown-progress"));
