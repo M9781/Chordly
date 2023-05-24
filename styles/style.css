@@ -87,6 +87,7 @@ circle {
   cx: 2rem;
   cy: 2rem;
   stroke-width: 5px;
+  filter: none;
 }
 #remaining-ierations-wrapper {
   position: relative;

@@ -39,7 +39,7 @@ function setStrokeDash(circle, circumference) {
 }
 
 function setStrokeTransitionTime(circle, miliseconds) {
-  const seconds = miliseconds * 0.001
+  const seconds = (miliseconds - 10) * 0.001
   circle.style.transition = `${seconds}s stroke-dashoffset`;
 }
 

@@ -162,7 +162,7 @@ const chords = {
 let randomizerInterval;
 let metronomeInterval;
 let timerInterval;
-let progressInterval;
+let repeatChordInterval;
 
 // Metronome sounds
 let MetronomeSoundDown = new Audio("sounds/Metronome.wav");
@@ -184,7 +184,8 @@ setBeepsVisibility();
 showHideMetronome();
 showHideNextChord();
 setRadius(countdownProgressCircle);
-setRadius(chordProgressCircle)
+setRadius(chordProgressCircle);
+clearProgress()
 
 // If page was closed without choosing at least one Main
 if (app.chosenChordsMain.length == 0) {
@@ -246,6 +247,9 @@ document.querySelector("#metronome-" + app.metronomeSignature).checked = true;
 repeatChordBarLabel.textContent = app.repeatChord;
 BPMBarLabel.textContent = app.BPM;
 
+// set initial value for remaining chords
+chordRemainingIterations.textContent = app.repeatChord;
+
 // -------- EVENT LISTENERS ---------
 
 // start/pause event listener
@@ -290,6 +294,7 @@ showCountdownSwitch.addEventListener("change", function (event) {
 repeatChordBar.addEventListener("input", function (event) {
   updateCookie("repeatChord", event.target.value);
   repeatChordBarLabel.textContent = event.target.value;
+  chordRemainingIterations.textContent = event.target.value;
 });
 BPMBar.addEventListener("input", function (event) {
   updateCookie("BPM", event.target.value);
@@ -319,4 +324,4 @@ window.addEventListener("resize", (event) => {
 // randomizerOptions.style.display = "none";
 // setProgress(countdownProgressCircle, 100);
 // countdownElement.children[0].textContent = 3
-setProgress(chordProgressCircle, 100);
+//setProgress(chordProgressCircle, 100);
