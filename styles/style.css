@@ -57,18 +57,53 @@ main {
   width: 600px;
 }
 
+#chord-progress {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  height: 4rem;
+  width: 4rem;
+  margin: auto 0;
+}
+
 circle {
   transition: 1s stroke-dashoffset;
   transform: rotate(-90deg);
   transform-origin: 50% 50%;
   stroke: rgb(49, 49, 49);
   filter: drop-shadow(-2px 2px 1px rgb(0 0 0 / 0.2));
+  fill: transparent;
 }
 
 #countdown-progress circle {
   cx: 300px;
   cy: 300px;
   stroke-width: 1.5rem;
+}
+
+#chord-progress circle {
+  cx: 2rem;
+  cy: 2rem;
+  stroke-width: 5px;
+}
+#remaining-ierations-wrapper {
+  position: relative;
+  height: 5rem;
+  width: 4rem;
+}
+
+#remaining-iterations {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: auto 0;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: rgb(49, 49, 49);
 }
 
 #first-chord {
@@ -110,9 +145,14 @@ circle {
 
 #randomizer-left-column {
   text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 1rem;
 }
 #randomizer-right-column {
   text-align: left;
+  display: flex;
+  padding-left: 1rem;
 }
 
 #start-btn {
@@ -140,13 +180,13 @@ circle {
 .randomizer-button {
   height: 100%;
   display: block;
-  margin: 0 1rem;
   background: none;
   border: none;
+  padding: 1rem;
   color: rgb(49, 49, 49);
 }
 .randomizer-button span {
-  transform: scale(2);
+  transform: scale(2.5);
 }
 .randomizer-button:hover {
   cursor: pointer;

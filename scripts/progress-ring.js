@@ -38,6 +38,11 @@ function setStrokeDash(circle, circumference) {
   circle.style.strokeDashoffset = `${circumference}`;
 }
 
+function setStrokeTransitionTime(circle, miliseconds) {
+  const seconds = miliseconds * 0.001
+  circle.style.transition = `${seconds}s stroke-dashoffset`;
+}
+
 function setRadius(circle) {
   const cx = parseFloat(getComputedStyle(circle).cx, 10);
   const strokeWidth = parseFloat(getComputedStyle(circle).strokeWidth, 10);

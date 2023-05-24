@@ -18,8 +18,8 @@ function stopCountdown() {
   clearInterval(timerInterval);
   countdownElement.style.display = "none";
   firstChordElement.style.display = "block";
-  showHideMetronome()
-  showHideNextChord()
+  showHideMetronome();
+  showHideNextChord();
   randomizerOptions.style.display = "grid";
   round = 3;
   progress = 0;
@@ -35,3 +35,8 @@ function changeNumber() {
 
 let round = 3;
 let progress = 0;
+
+function changeChordIterationsNumber() {
+  setProgress(chordProgressCircle, 100);
+  chordRemainingIterations.textContent = iteration;
+}

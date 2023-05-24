@@ -112,9 +112,9 @@ async function startRandomizer() {
     changeText,
     app.repeatChord * (60 / app.BPM) * 1000 * getFractionsNumber()
   );
-  
 
   if (app.showMetronome) startMetronome();
+
 }
 
 // separate function for stoping randomizer

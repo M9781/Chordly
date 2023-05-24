@@ -52,11 +52,7 @@
           <p>3</p>
           <!-- <progress-ring stroke="4" radius="60" progress="0" id="chord-progress"> 4 </progress-ring>  -->
           <svg class="progress-ring" id="countdown-progress">
-            <circle
-              class="progress-ring__circle"
-              stroke-width="15px"
-              fill="transparent"
-            />
+            <circle id="countdown-progress-circle" />
           </svg>
         </aside>
 
@@ -74,14 +70,20 @@
         <div id="randomizer-options">
           <div id="randomizer-left-column">
             <!-- <progress-ring stroke="4" radius="60" progress="0" id="chord-progress"> 4 </progress-ring> -->
+            <div id="remaining-ierations-wrapper">
+              <p id="remaining-iterations">3</p>
+              <svg class="progress-ring" id="chord-progress">
+                <circle id="chord-progress-circle" />
+              </svg>
+            </div>
           </div>
           <div>
-            <button id="start-btn">
+            <button type="button" id="start-btn">
               <span class="material-symbols-sharp filled">play_arrow</span>
             </button>
           </div>
           <div id="randomizer-right-column">
-            <button id="fullscreen-btn" class="randomizer-button">
+            <button type="button" id="fullscreen-btn" class="randomizer-button">
               <span class="material-symbols-sharp filled">fullscreen</span>
             </button>
           </div>
