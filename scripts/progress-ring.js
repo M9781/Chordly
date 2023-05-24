@@ -1,9 +1,9 @@
 // class progressRing extends HTMLElement {
 //   constructor() {
 //     super();
-//     this.circumference = 
-//     this.radius = 
-//     this.strokeWidth = 
+//     this.circumference =
+//     this.radius =
+//     this.strokeWidth =
 //   }
 
 //   getCircumference(radius) {
@@ -32,9 +32,6 @@
 //     circle.style.strokeDashoffset = offset;
 //   }
 // }
-
-
-
 
 function setStrokeDash(circle, circumference) {
   circle.style.strokeDasharray = `${circumference} ${circumference}`;

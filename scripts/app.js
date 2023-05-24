@@ -277,7 +277,7 @@ showMetronomeSwitch.addEventListener("change", function (event) {
 
 showNextChordSwitch.addEventListener("change", function (event) {
   updateCookie("showNextChord", event.target.checked);
-  NextChord();
+  showHideNextChord();
 });
 
 showPreTimerSwitch.addEventListener("change", function (event) {

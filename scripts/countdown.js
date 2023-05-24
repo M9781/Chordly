@@ -18,8 +18,8 @@ function stopPreTimer() {
   clearInterval(timerInterval);
   preTimerElement.style.display = "none";
   firstChordElement.style.display = "block";
-  nextChordElement.style.display = "block";
-  visualMetronome.style.display = "block";
+  showHideMetronome()
+  showHideNextChord()
   randomizerOptions.style.display = "grid";
   round = 3;
   progress = 0;

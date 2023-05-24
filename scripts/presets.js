@@ -88,4 +88,3 @@ function showHideNextChord() {
     nextChordElement.style.display = "none";
   }
 }
-
