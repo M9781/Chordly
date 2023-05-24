@@ -30,13 +30,13 @@ main {
   justify-content: center;
 }
 
-#pre-timer {
+#countdown {
   display: none;
   position: relative;
   height: 41rem;
 }
 
-#pre-timer p {
+#countdown p {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -256,10 +256,10 @@ circle {
     font-size: 6em;
     height: 7rem;
   }
-  #pre-timer p {
+  #countdown p {
     font-size: 23rem;
   }
-  #pre-timer {
+  #countdown {
     height: 37rem;
   }
   #countdown-progress {
@@ -286,10 +286,10 @@ circle {
     font-size: 4em;
     height: 5rem;
   }
-  #pre-timer p {
+  #countdown p {
     font-size: 20em;
   }
-  #pre-timer {
+  #countdown {
     height: 29rem;
   }
   #countdown-progress {
@@ -312,10 +312,10 @@ circle {
     font-size: 3em;
     height: 3rem;
   }
-  #pre-timer p {
+  #countdown p {
     font-size: 15em;
   }
-  #pre-timer {
+  #countdown {
     height: 25rem;
   }
   #countdown-progress {

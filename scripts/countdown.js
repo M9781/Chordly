@@ -2,8 +2,8 @@
 //   Pre-timer
 // ******************************************************
 
-async function startPreTimer() {
-  preTimerElement.style.display = "block";
+async function startCountdown() {
+  countdownElement.style.display = "block";
   firstChordElement.style.display = "none";
   nextChordElement.style.display = "none";
   visualMetronome.style.display = "none";
@@ -14,9 +14,9 @@ async function startPreTimer() {
   timerInterval = setInterval(changeNumber, 1000);
 }
 
-function stopPreTimer() {
+function stopCountdown() {
   clearInterval(timerInterval);
-  preTimerElement.style.display = "none";
+  countdownElement.style.display = "none";
   firstChordElement.style.display = "block";
   showHideMetronome()
   showHideNextChord()
@@ -28,9 +28,9 @@ function stopPreTimer() {
 function changeNumber() {
   round--;
   progress += (1 / 3) * 100;
-  if (round < 1) stopPreTimer();
+  if (round < 1) stopCountdown();
   setProgress(countdownProgressCircle, progress);
-  preTimerElement.children[0].textContent = round;
+  countdownElement.children[0].textContent = round;
 }
 
 let round = 3;

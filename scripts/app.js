@@ -7,7 +7,7 @@
 const firstChordElement = document.getElementById("first-chord");
 const nextChordElement = document.getElementById("next-chord");
 const visualMetronome = document.getElementById("metronome");
-const preTimerElement = document.getElementById("pre-timer");
+const countdownElement = document.getElementById("countdown");
 
 const metronome = {
   beep1: document.getElementById("beep1"),
@@ -26,7 +26,7 @@ const randomizerOptions = document.getElementById("randomizer-options");
 
 const showMetronomeSwitch = document.getElementById("show-metronome");
 const showNextChordSwitch = document.getElementById("show-upc-chord");
-const showPreTimerSwitch = document.getElementById("show-pre-timer");
+const showCountdownSwitch = document.getElementById("show-countdown");
 
 const metronomeSignatureOptionsElement = document.getElementById(
   "metronome-signature"
@@ -81,13 +81,13 @@ const countdownProgressCircle =
 // --------- DEFAULT VALUES ------------
 let isFullscreenEnabled = false;
 let isRandomizerRunning = false;
-let isPreTimerRunning = false;
+let isCountdownRunning = false;
 
 let app = {
   cookiesExist: true,
   showNextChord: true,
   showMetronome: true,
-  showPreTimer: true,
+  showCountdown: true,
   repeatChord: 1,
   BPM: 60,
   metronomeSignature: "44",
@@ -233,7 +233,7 @@ nextChordElement.textContent = getRandomChord();
 // set initial values of app presets
 showMetronomeSwitch.checked = app.showMetronome;
 showNextChordSwitch.checked = app.showNextChord;
-showPreTimerSwitch.checked = app.showPreTimer;
+showCountdownSwitch.checked = app.showCountdown;
 
 // set initial values of other presets
 repeatChordBar.value = app.repeatChord;
@@ -280,8 +280,8 @@ showNextChordSwitch.addEventListener("change", function (event) {
   showHideNextChord();
 });
 
-showPreTimerSwitch.addEventListener("change", function (event) {
-  updateCookie("showPreTimer", event.target.checked);
+showCountdownSwitch.addEventListener("change", function (event) {
+  updateCookie("showCountdown", event.target.checked);
 });
 
 repeatChordBar.addEventListener("input", function (event) {
@@ -310,10 +310,10 @@ window.addEventListener("resize", (event) => {
 }
 )
 
-// preTimerElement.style.display = "block";
+// countdownElement.style.display = "block";
 // firstChordElement.style.display = "none";
 // nextChordElement.style.display = "none";
 // visualMetronome.style.display = "none";
 // randomizerOptions.style.display = "none";
 // setProgress(countdownProgressCircle, 100);
-// preTimerElement.children[0].textContent = 3
+// countdownElement.children[0].textContent = 3

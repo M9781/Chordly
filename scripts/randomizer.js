@@ -103,8 +103,8 @@ function changeText() {
 async function startRandomizer() {
   startBtn.children[0].textContent = "pause";
   isRandomizerRunning = true;
-  if (app.showPreTimer) {
-    startPreTimer();
+  if (app.showCountdown) {
+    startCountdown();
     await new Promise((r) => setTimeout(r, 3000));
   }
 
@@ -122,13 +122,13 @@ function stopRandomizer() {
   startBtn.children[0].textContent = "play_arrow";
   clearInterval(randomizerInterval);
   isRandomizerRunning = false;
-  stopPreTimer();
+  stopCountdown();
   stopMetronome();
 }
 
 //event listener function for startBtn
 function startStopRandomizer(event) {
-  //wait for pretimer
+  //wait for Countdown
   if (checkForEmptyCLException()) return;
 
   if (!isRandomizerRunning) {
