@@ -23,9 +23,8 @@ body.fullscreen {
 }
 
 #content-wrap {
-  padding-bottom: 7rem;    /* Footer height */
+  padding-bottom: 7rem; /* Footer height */
 }
-
 
 .material-symbols-sharp {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 200, "opsz" 48;
@@ -136,10 +135,9 @@ nav a:hover {
 }
 
 h1 {
-  /* main header */
+  margin: 0 0 2rem 0;
   text-align: center;
-  font-size: 3.5rem;
-  margin: 0 0 1rem 0;
+  font-size: 4rem;
 }
 
 h2 {
@@ -171,6 +169,10 @@ article h2 {
 
 section {
   margin: 2rem auto;
+}
+
+section.article-wrap {
+  margin: 3rem auto 2rem auto;
 }
 
 footer {
