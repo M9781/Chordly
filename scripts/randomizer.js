@@ -59,6 +59,7 @@ function showEmptyCLError(type) {
     if (type !== "main" && element === "main") continue;
 
     optionsElements[element].classList.add("warning");
+
   }
   section[type].scrollIntoView();
   errorOutputElement[type].textContent = emptyCLExceptionMsg[type];

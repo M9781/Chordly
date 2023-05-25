@@ -3,6 +3,7 @@
 //   ╚════════════════════════════════════════════════════╝
 
 // ---------- DOCUMENT ELEMENTS ------------
+const pageLogo = document.getElementById("page-logo")
 
 const firstChordElement = document.getElementById("first-chord");
 const nextChordElement = document.getElementById("next-chord");
@@ -310,3 +311,5 @@ window.addEventListener("resize", (event) => {
   setRadius(countdownProgressCircle);
   setProgress(countdownProgressCircle, progress);
 });
+
+pageLogo.scrollIntoView()
