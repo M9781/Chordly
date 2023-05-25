@@ -53,6 +53,7 @@ ul {
 
 a {
   text-decoration: none;
+  color: beige;
 }
 
 label {
@@ -164,7 +165,19 @@ article {
 
 article h2 {
   text-align: left;
+  margin: 0 0 1rem 0;
+}
+
+article h3 {
+  text-align: left;
+  margin: 0 0 0.5rem 0;
+}
+article p {
   margin: 0 0 1.5rem 0;
+}
+
+p.centered {
+  text-align: center;
 }
 
 section {
