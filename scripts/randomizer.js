@@ -108,14 +108,11 @@ async function startRandomizer() {
     await new Promise((r) => setTimeout(r, 3000));
   }
 
-  const randomizerIntervalTime =
+  const randomizerTime =
     app.repeatChord * (60 / app.BPM) * 1000 * getFractionsNumber();
-  repeatChordIntervalTime = randomizerIntervalTime / app.repeatChord;
-  
-  chordRemainingIterations.textContent = app.repeatChord;
-  startRemainingChords()
+  randomizerInterval = setInterval(changeText, randomizerTime);
 
-  randomizerInterval = setInterval(changeText, randomizerIntervalTime);
+  startRemainingChords();
 
   if (app.showMetronome) startMetronome();
 }
@@ -127,7 +124,7 @@ function stopRandomizer() {
   isRandomizerRunning = false;
   stopCountdown();
   stopMetronome();
-  stopRemainingChords()
+  stopRemainingChords();
 }
 
 //event listener function for startBtn
@@ -139,5 +136,13 @@ function startStopRandomizer(event) {
     startRandomizer();
   } else {
     stopRandomizer();
+  }
+}
+
+async function restartRandomizer() {
+  if (isRandomizerRunning) {
+    stopRandomizer();
+    await new Promise((r) => setTimeout(r, 10));
+    startRandomizer();
   }
 }

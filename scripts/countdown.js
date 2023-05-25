@@ -1,5 +1,5 @@
 // ******************************************************
-//   Pre-timer
+//   Countdown
 // ******************************************************
 
 async function startCountdown() {
@@ -35,48 +35,3 @@ function changeNumber() {
 
 let round = 3;
 let progress = 0;
-
-let repeatChordIntervalTime;
-
-// -----
-let iteration = 0;
-
-async function changeRemainingChords() {
-  
-  clearProgress()
-  await new Promise((r) => setTimeout(r, 10));
-  iteration++;
-  remainingIterations = app.repeatChord - iteration;
-  if (remainingIterations <= 0) {
-    iteration = 0;
-    remainingIterations = app.repeatChord;
-  }
-  
-  startProgress()
-  chordRemainingIterations.textContent = remainingIterations;
-}
-
-async function startRemainingChords() {
-  startProgress()
-  repeatChordInterval = setInterval(
-    changeRemainingChords,
-    repeatChordIntervalTime
-  );
-}
-
-function stopRemainingChords() {
-  clearInterval(repeatChordInterval);
-  clearProgress()
-  chordRemainingIterations.textContent = app.repeatChord;
-}
-
-function clearProgress() {
-  setStrokeTransitionTime(chordProgressCircle, 0);
-  setProgress(chordProgressCircle, 0);
-} 
-
-
-function startProgress() {
-  setStrokeTransitionTime(chordProgressCircle, repeatChordIntervalTime);
-  setProgress(chordProgressCircle, 100);
-} 

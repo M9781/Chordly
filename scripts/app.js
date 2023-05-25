@@ -40,6 +40,15 @@ const metronomeSignatureRadio = document.querySelectorAll(
   "#metronome-signature input"
 );
 
+const countdownProgressElement = document.getElementById("countdown-progress");
+const chordProgressElement = document.getElementById("chord-progress");
+
+const countdownProgressCircle = document.getElementById(
+  "countdown-progress-circle"
+);
+const chordProgressCircle = document.getElementById("chord-progress-circle");
+const remainingChordsElement = document.getElementById("remaining-iterations");
+
 const section = {
   presets: document.getElementById("presets"),
   main: document.getElementById("main-key"),
@@ -71,16 +80,6 @@ const chordListElements = {
   intermediate: document.getElementById("intermediate-chords-list"),
   advanced: document.getElementById("advanced-chords-list"),
 };
-
-const countdownProgressElement = document.getElementById("countdown-progress");
-const chordProgressElement = document.getElementById("chord-progress");
-
-const countdownProgressCircle = document.getElementById(
-  "countdown-progress-circle"
-);
-const chordProgressCircle = document.getElementById("chord-progress-circle");
-const chordRemainingIterations = document.getElementById("remaining-iterations")
-
 
 // --------- DEFAULT VALUES ------------
 let isFullscreenEnabled = false;
@@ -184,8 +183,6 @@ setBeepsVisibility();
 showHideMetronome();
 showHideNextChord();
 setRadius(countdownProgressCircle);
-setRadius(chordProgressCircle);
-clearProgress()
 
 // If page was closed without choosing at least one Main
 if (app.chosenChordsMain.length == 0) {
@@ -248,7 +245,7 @@ repeatChordBarLabel.textContent = app.repeatChord;
 BPMBarLabel.textContent = app.BPM;
 
 // set initial value for remaining chords
-chordRemainingIterations.textContent = app.repeatChord;
+remainingChordsElement.textContent = app.repeatChord;
 
 // -------- EVENT LISTENERS ---------
 
@@ -274,11 +271,7 @@ for (const difficultyLevel in chordListElements) {
 
 showMetronomeSwitch.addEventListener("change", function (event) {
   updateCookie("showMetronome", event.target.checked);
-  if (isRandomizerRunning) {
-    stopRandomizer();
-    startRandomizer();
-  }
-
+  restartRandomizer();
   showHideMetronome();
 });
 
@@ -294,20 +287,19 @@ showCountdownSwitch.addEventListener("change", function (event) {
 repeatChordBar.addEventListener("input", function (event) {
   updateCookie("repeatChord", event.target.value);
   repeatChordBarLabel.textContent = event.target.value;
-  chordRemainingIterations.textContent = event.target.value;
+  remainingChordsElement.textContent = event.target.value;
+  restartRandomizer();
 });
 BPMBar.addEventListener("input", function (event) {
   updateCookie("BPM", event.target.value);
   BPMBarLabel.textContent = event.target.value;
+  restartRandomizer();
 });
 
 for (let radioControl of metronomeSignatureRadio) {
   radioControl.addEventListener("change", function (event) {
     updateCookie("metronomeSignature", event.target.value);
-    if (isRandomizerRunning) {
-      stopRandomizer();
-      startRandomizer();
-    }
+    restartRandomizer();
     setBeepsVisibility();
   });
 }
@@ -316,12 +308,3 @@ window.addEventListener("resize", (event) => {
   setRadius(countdownProgressCircle);
   setProgress(countdownProgressCircle, progress);
 });
-
-// countdownElement.style.display = "block";
-// firstChordElement.style.display = "none";
-// nextChordElement.style.display = "none";
-// visualMetronome.style.display = "none";
-// randomizerOptions.style.display = "none";
-// setProgress(countdownProgressCircle, 100);
-// countdownElement.children[0].textContent = 3
-//setProgress(chordProgressCircle, 100);

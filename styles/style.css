@@ -70,7 +70,7 @@ main {
 
 circle {
   transition: 1s stroke-dashoffset;
-  transform: rotate(-90deg);
+  transform: rotate(-91deg);
   transform-origin: 50% 50%;
   stroke: rgb(49, 49, 49);
   filter: drop-shadow(-2px 2px 1px rgb(0 0 0 / 0.2));
@@ -88,7 +88,22 @@ circle {
   cy: 2rem;
   stroke-width: 5px;
   filter: none;
+  transition: none;
+  r: 22;
 }
+
+#chord-progress-circle {
+  stroke: white;
+  stroke-dasharray: 138.23, 138.23;
+  stroke-dashoffset: 136.848;
+}
+
+.spinning {
+  -webkit-animation: spin 4s linear infinite;
+  -moz-animation: spin 4s linear infinite;
+  animation: spin 4s linear infinite;
+}
+
 #remaining-ierations-wrapper {
   position: relative;
   height: 5rem;
@@ -287,7 +302,23 @@ circle {
   }
 }
 
-/* 11 */
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(269deg);
+  }
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(269deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(269deg);
+    transform: rotate(269deg);
+  }
+}
+
 @media (max-width: 1000px) {
   #first-chord {
     font-size: 15em;
