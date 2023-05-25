@@ -22,6 +22,7 @@ function stopRemainingChords() {
   clearInterval(repeatChordInterval);
   remainingChordsElement.textContent = app.repeatChord;
   stopSpin();
+  iteration = 0;
 }
 
 function getRemainingChordsTime() {
