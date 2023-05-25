@@ -1,5 +1,9 @@
 # Chordly
 
+## What's that ##
+
+This is a web application &#8211; it shows random chords to a user, who can choose the difficulty level, tempo, number of iteration and set visibility of some elements. Application has it's configurable metronome. User can choose which chords wants to practice.
+
 ## Why for ##
 Chordly was created to support musicians &#8211; begginers, advanced and those in the midway &#128513; BUT especially for my wife, the originator and supporter &#128525;
 
