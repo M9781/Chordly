@@ -96,6 +96,8 @@ let app = {
   metronomeSignature: "44",
   chosenChordsMain: [1, 2, 4, 5, 7, 8, 9, 11, 12, 14, 15, 17],
   chosenChordsSufix: [18],
+  customChordsId: [],
+  customChordsValue: [],
 };
 
 // object containing OBJECTS of chosen chords
