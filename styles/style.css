@@ -122,21 +122,36 @@ circle {
   color: rgb(49, 49, 49);
 }
 
-#first-chord {
-  font-size: 20rem;
-  font-weight: bold;
+#first-chord-container {
   height: 24rem;
-  margin: 0;
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  width: 95%;
+}
+
+#next-chord-container {
+  height: 7.5rem;
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  width: 95%;
+}
+
+#first-chord {
+  word-wrap: break-word;
+  word-break: break-all;
+  font-weight: bold;
+  margin: auto 0;
   text-shadow: 2px 2px 1px rgb(0, 0, 0, 0.2);
   color: beige;
 }
 #next-chord {
-  font-size: 5rem;
-  height: 6rem;
+  font-size: 6rem;
+  margin: auto 0;
   font-weight: bold;
   color: beige;
   text-shadow: 2px 2px 1px rgb(0, 0, 0, 0.2);
-  margin: 0;
 }
 
 #metronome {
@@ -320,13 +335,14 @@ circle {
 }
 
 @media (max-width: 1000px) {
-  #first-chord {
-    font-size: 15em;
-    height: 19rem;
+  #first-chord-container {
+    height: 20rem;
+  }
+  #next-chord-container {
+    height: 6rem;
   }
   #next-chord {
-    font-size: 6em;
-    height: 7rem;
+    font-size: 5rem;
   }
   #countdown p {
     font-size: 23rem;
@@ -350,13 +366,14 @@ circle {
     columns: 1;
   }
 
-  #first-chord {
-    font-size: 10em;
-    height: 13rem;
+  #first-chord-container {
+    height: 15rem;
+  }
+  #next-chord-container {
+    height: 5rem;
   }
   #next-chord {
-    font-size: 4em;
-    height: 5rem;
+    font-size: 4rem;
   }
   #countdown p {
     font-size: 20em;
@@ -376,13 +393,14 @@ circle {
 }
 
 @media (max-width: 500px) {
-  #first-chord {
-    font-size: 8em;
-    height: 11rem;
+  #first-chord-container {
+    height: 12rem;
+  }
+  #next-chord-container {
+    height: 3.5rem;
   }
   #next-chord {
-    font-size: 3em;
-    height: 3rem;
+    font-size: 3rem;
   }
   #countdown p {
     font-size: 15em;

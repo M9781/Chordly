@@ -6,7 +6,9 @@
 const pageLogo = document.getElementById("page-logo")
 
 const firstChordElement = document.getElementById("first-chord");
+const firstChordContainerElement = document.getElementById("first-chord-container");
 const nextChordElement = document.getElementById("next-chord");
+const nextChordContainerElement = document.getElementById("next-chord-container");
 const visualMetronome = document.getElementById("metronome");
 const countdownElement = document.getElementById("countdown");
 
@@ -186,6 +188,7 @@ setBeepsVisibility();
 showHideMetronome();
 showHideNextChord();
 setRadius(countdownProgressCircle);
+//resizeRandomizerHeight()
 
 // If page was closed without choosing at least one Main
 if (app.chosenChordsMain.length == 0) {
@@ -233,6 +236,7 @@ updateChosenChords();
 //set initial values of randomizer chords
 firstChordElement.textContent = getRandomChord();
 nextChordElement.textContent = getRandomChord();
+processInput(firstChordElement, firstChordContainerElement)
 
 // set initial values of app presets
 showMetronomeSwitch.checked = app.showMetronome;
@@ -310,6 +314,7 @@ for (let radioControl of metronomeSignatureRadio) {
 window.addEventListener("resize", (event) => {
   setRadius(countdownProgressCircle);
   setProgress(countdownProgressCircle, progress);
+  processInput(firstChordElement, firstChordContainerElement)
 });
 
 pageLogo.scrollIntoView()

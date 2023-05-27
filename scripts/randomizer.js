@@ -59,7 +59,6 @@ function showEmptyCLError(type) {
     if (type !== "main" && element === "main") continue;
 
     optionsElements[element].classList.add("warning");
-
   }
   section[type].scrollIntoView();
   errorOutputElement[type].textContent = emptyCLExceptionMsg[type];
@@ -94,6 +93,7 @@ function getRandomChord() {
 function changeText() {
   firstChordElement.textContent = nextChordElement.textContent;
   nextChordElement.textContent = getRandomChord(); //chordlist main + chordlist sufix
+  processInput(firstChordElement, firstChordContainerElement);
 }
 
 // ******************************************************
@@ -146,4 +146,27 @@ async function restartRandomizer() {
     await new Promise((r) => setTimeout(r, 10));
     startRandomizer();
   }
+}
+
+// ******************************************************
+//   Resizer
+// ******************************************************
+
+function resize_to_fit(output, outputContainer) {
+  let fontSize = window.getComputedStyle(output).fontSize;
+  console.log(fontSize);
+  output.style.fontSize = parseFloat(fontSize) - 20 + "px";
+
+  const outputWidth = output.clientHeight;
+  const outputContainerWidth = outputContainer.clientHeight;
+  console.log(outputWidth);
+  console.log(outputContainerWidth);
+  if (outputWidth >= outputContainerWidth) {
+    resize_to_fit(output, outputContainer);
+  }
+}
+
+function processInput(output, outputContainer) {
+  output.style.fontSize = "24rem"; // Default font size
+  resize_to_fit(output, outputContainer);
 }

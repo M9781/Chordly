@@ -83,8 +83,9 @@ function showHideMetronome() {
 // Show or hide Next Chord
 function showHideNextChord() {
   if (app.showNextChord) {
-    nextChordElement.style.display = "block";
+    nextChordContainerElement.style.display = "flex";
   } else {
-    nextChordElement.style.display = "none";
+    nextChordContainerElement.style.display = "none";
   }
 }
+

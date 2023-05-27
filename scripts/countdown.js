@@ -3,11 +3,16 @@
 // ******************************************************
 
 async function startCountdown() {
+  let randomizerHeight = parseFloat(
+    getComputedStyle(randomizerElement).height,
+    10
+  );
   countdownElement.style.display = "block";
-  firstChordElement.style.display = "none";
-  nextChordElement.style.display = "none";
+  firstChordContainerElement.style.display = "none";
+  nextChordContainerElement.style.display = "none";
   visualMetronome.style.display = "none";
   randomizerOptions.style.display = "none";
+  randomizerElement.style.height = `${randomizerHeight}px`;
   await new Promise((r) => setTimeout(r, 10));
   progress = (1 / 3) * 100;
   setProgress(countdownProgressCircle, progress);
@@ -17,12 +22,13 @@ async function startCountdown() {
 function stopCountdown() {
   clearInterval(timerInterval);
   countdownElement.style.display = "none";
-  firstChordElement.style.display = "block";
+  firstChordContainerElement.style.display = "flex";
   showHideMetronome();
   showHideNextChord();
   randomizerOptions.style.display = "grid";
   round = 3;
   progress = 0;
+  randomizerElement.removeAttribute("style")
 }
 
 function changeNumber() {
