@@ -101,13 +101,13 @@ function changeText() {
 // ******************************************************
 
 // separate function for starting randomizer
-async function startRandomizer() {
+async function startRandomizer(restart = false) {
   startBtn.children[0].textContent = "pause";
-  isRandomizerRunning = true;
-  if (app.showCountdown) {
+  if (app.showCountdown && !restart) {
     startCountdown();
     await new Promise((r) => setTimeout(r, 3000));
   }
+  isRandomizerRunning = true;
 
   const randomizerTime =
     app.repeatChord * (60 / app.BPM) * 1000 * getFractionsNumber();
@@ -144,7 +144,7 @@ async function restartRandomizer() {
   if (isRandomizerRunning) {
     stopRandomizer();
     await new Promise((r) => setTimeout(r, 10));
-    startRandomizer();
+    startRandomizer(true);
   }
 }
 

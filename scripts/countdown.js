@@ -28,7 +28,7 @@ function stopCountdown() {
   randomizerOptions.style.display = "grid";
   round = 3;
   progress = 0;
-  randomizerElement.removeAttribute("style")
+  randomizerElement.removeAttribute("style");
 }
 
 function changeNumber() {

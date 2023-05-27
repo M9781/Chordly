@@ -188,7 +188,6 @@ setBeepsVisibility();
 showHideMetronome();
 showHideNextChord();
 setRadius(countdownProgressCircle);
-//resizeRandomizerHeight()
 
 // If page was closed without choosing at least one Main
 if (app.chosenChordsMain.length == 0) {
