@@ -5,16 +5,24 @@
 //disables or enables fullscreen mode
 function enableDisableFullscreen() {
   if (!isFullscreenEnabled) {
-    randomizerElement.classList.add("fullscreen");
-    document.body.classList.add("fullscreen");
-    fullscreenBtn.children[0].textContent = "fullscreen_exit";
-    isFullscreenEnabled = true;
+    enableFullscreen();
   } else {
-    randomizerElement.classList.remove("fullscreen");
-    document.body.classList.remove("fullscreen");
-    fullscreenBtn.children[0].textContent = "fullscreen";
-    isFullscreenEnabled = false;
+    disableFullscreen();
   }
+}
+
+function enableFullscreen() {
+  randomizerElement.classList.add("fullscreen");
+  document.body.classList.add("fullscreen");
+  fullscreenBtn.children[0].textContent = "fullscreen_exit";
+  isFullscreenEnabled = true;
+}
+
+function disableFullscreen() {
+  randomizerElement.classList.remove("fullscreen");
+  document.body.classList.remove("fullscreen");
+  fullscreenBtn.children[0].textContent = "fullscreen";
+  isFullscreenEnabled = false;
 }
 
 // ******************************************************
@@ -154,14 +162,8 @@ async function restartRandomizer() {
 
 function resize_to_fit(output, outputContainer) {
   let fontSize = window.getComputedStyle(output).fontSize;
-  console.log(fontSize);
   output.style.fontSize = parseFloat(fontSize) - 20 + "px";
-
-  const outputWidth = output.clientHeight;
-  const outputContainerWidth = outputContainer.clientHeight;
-  console.log(outputWidth);
-  console.log(outputContainerWidth);
-  if (outputWidth >= outputContainerWidth) {
+  if (output.clientHeight >= outputContainer.clientHeight) {
     resize_to_fit(output, outputContainer);
   }
 }
@@ -169,4 +171,14 @@ function resize_to_fit(output, outputContainer) {
 function processInput(output, outputContainer) {
   output.style.fontSize = "24rem"; // Default font size
   resize_to_fit(output, outputContainer);
+}
+
+function autoRotate() {
+  if (window.innerHeight < 700) {
+    if (!isFullscreenEnabled) enableFullscreen();
+    randomizerElement.classList.add("rotate");
+  } else {
+    disableFullscreen();
+    randomizerElement.classList.remove("rotate");
+  }
 }

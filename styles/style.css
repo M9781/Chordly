@@ -30,6 +30,14 @@ main {
   justify-content: center;
 }
 
+#randomizer.rotate {
+  display: grid;
+  grid-template-columns: 1.75fr 1.25fr;
+  justify-content: center;
+}
+
+
+
 #countdown {
   display: none;
   position: relative;
@@ -131,11 +139,12 @@ circle {
 }
 
 #next-chord-container {
-  height: 7.5rem;
+  height: 8rem;
   display: flex;
   margin: 0 auto;
   justify-content: center;
   width: 95%;
+  margin-bottom: 1.5rem;
 }
 
 #first-chord {
@@ -417,4 +426,36 @@ circle {
     cy: 160px;
     stroke-width: 1rem;
   }
+}
+
+@media (max-height: 700px) {
+  #radomizer-rotate-column-1 {
+    margin: auto 0;
+  }
+  
+  #radomizer-rotate-column-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+ #randomizer {
+  padding: 0;
+ }
+  #countdown p {
+    font-size: 15em;
+  }
+  #countdown {
+    height: 25rem;
+  }
+  #countdown-progress {
+    height: 320px;
+    width: 320px;
+  }
+  #countdown-progress circle {
+    cx: 160px;
+    cy: 160px;
+    stroke-width: 1rem;
+  }
+
 }

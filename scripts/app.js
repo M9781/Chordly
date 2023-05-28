@@ -188,6 +188,7 @@ setBeepsVisibility();
 showHideMetronome();
 showHideNextChord();
 setRadius(countdownProgressCircle);
+autoRotate() 
 
 // If page was closed without choosing at least one Main
 if (app.chosenChordsMain.length == 0) {
@@ -314,6 +315,7 @@ window.addEventListener("resize", (event) => {
   setRadius(countdownProgressCircle);
   setProgress(countdownProgressCircle, progress);
   processInput(firstChordElement, firstChordContainerElement)
+  autoRotate(event)
 });
 
 pageLogo.scrollIntoView()

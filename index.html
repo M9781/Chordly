@@ -58,14 +58,15 @@
                 <circle id="countdown-progress-circle" />
               </svg>
             </aside>
-            <div>
+            <div id="radomizer-rotate-column-1">
               <div id="first-chord-container">
                 <div id="first-chord">D</div>
               </div>
+            </div>
+            <div id="radomizer-rotate-column-2">
               <div id="next-chord-container">
                 <p id="next-chord">F</p>
               </div>
-
               <div id="metronome">
                 <span id="beep1" class="beep">&#8226;</span>
                 <span id="beep2" class="beep">&#8226;</span>
@@ -74,31 +75,37 @@
                 <span id="beep5" class="beep">&#8226;</span>
                 <span id="beep6" class="beep">&#8226;</span>
               </div>
-            </div>
-            <div id="randomizer-options">
-              <div id="randomizer-left-column">
-                <!-- <progress-ring stroke="4" radius="60" progress="0" id="chord-progress"> 4 </progress-ring> -->
-                <div id="remaining-ierations-wrapper">
-                  <p id="remaining-iterations">3</p>
-                  <svg class="progress-ring" id="chord-progress">
-                    <circle id="chord-progress-bg" />
-                    <circle id="chord-progress-circle" />
-                  </svg>
+
+              <div id="randomizer-options">
+                <div id="randomizer-left-column">
+                  <!-- <progress-ring stroke="4" radius="60" progress="0" id="chord-progress"> 4 </progress-ring> -->
+                  <div id="remaining-ierations-wrapper">
+                    <p id="remaining-iterations">3</p>
+                    <svg class="progress-ring" id="chord-progress">
+                      <circle id="chord-progress-bg" />
+                      <circle id="chord-progress-circle" />
+                    </svg>
+                  </div>
                 </div>
-              </div>
-              <div>
-                <button type="button" id="start-btn">
-                  <span class="material-symbols-sharp filled">play_arrow</span>
-                </button>
-              </div>
-              <div id="randomizer-right-column">
-                <button
-                  type="button"
-                  id="fullscreen-btn"
-                  class="randomizer-button"
-                >
-                  <span class="material-symbols-sharp filled">fullscreen</span>
-                </button>
+
+                <div>
+                  <button type="button" id="start-btn">
+                    <span class="material-symbols-sharp filled"
+                      >play_arrow</span
+                    >
+                  </button>
+                </div>
+                <div id="randomizer-right-column">
+                  <button
+                    type="button"
+                    id="fullscreen-btn"
+                    class="randomizer-button"
+                  >
+                    <span class="material-symbols-sharp filled"
+                      >fullscreen</span
+                    >
+                  </button>
+                </div>
               </div>
             </div>
           </section>
