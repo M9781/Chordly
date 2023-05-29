@@ -3,12 +3,16 @@
 //   ╚════════════════════════════════════════════════════╝
 
 // ---------- DOCUMENT ELEMENTS ------------
-const pageLogo = document.getElementById("page-logo")
+const pageLogo = document.getElementById("page-logo");
 
 const firstChordElement = document.getElementById("first-chord");
-const firstChordContainerElement = document.getElementById("first-chord-container");
+const firstChordContainerElement = document.getElementById(
+  "first-chord-container"
+);
 const nextChordElement = document.getElementById("next-chord");
-const nextChordContainerElement = document.getElementById("next-chord-container");
+const nextChordContainerElement = document.getElementById(
+  "next-chord-container"
+);
 const visualMetronome = document.getElementById("metronome");
 const countdownElement = document.getElementById("countdown");
 
@@ -184,11 +188,8 @@ if (cookiesExist) {
   loadDefaultCookies();
 }
 
-setBeepsVisibility();
-showHideMetronome();
-showHideNextChord();
-setRadius(countdownProgressCircle);
-autoRotate() 
+
+
 
 // If page was closed without choosing at least one Main
 if (app.chosenChordsMain.length == 0) {
@@ -220,9 +221,7 @@ for (const difficultyLevel in chords) {
 // set initial states of checkboxes
 
 // help array to search through created checkboxes id. Removes " " strings
-let initialChordList = []
-  .concat(app.chosenChordsMain, app.chosenChordsSufix)
-  .filter((item) => item != " ");
+let initialChordList = [].concat(app.chosenChordsMain, app.chosenChordsSufix);
 
 for (let chord of initialChordList) {
   document.querySelector("#chord-" + chord).checked = true;
@@ -236,7 +235,6 @@ updateChosenChords();
 //set initial values of randomizer chords
 firstChordElement.textContent = getRandomChord();
 nextChordElement.textContent = getRandomChord();
-processInput(firstChordElement, firstChordContainerElement)
 
 // set initial values of app presets
 showMetronomeSwitch.checked = app.showMetronome;
@@ -314,8 +312,14 @@ for (let radioControl of metronomeSignatureRadio) {
 window.addEventListener("resize", (event) => {
   setRadius(countdownProgressCircle);
   setProgress(countdownProgressCircle, progress);
-  processInput(firstChordElement, firstChordContainerElement)
-  autoRotate(event)
+  autoRotate(event);
+  processInput(firstChordElement, firstChordContainerElement);
 });
 
-pageLogo.scrollIntoView()
+setBeepsVisibility();
+showHideMetronome();
+showHideNextChord();
+setRadius(countdownProgressCircle);
+pageLogo.scrollIntoView();
+autoRotate();
+processInput(firstChordElement, firstChordContainerElement);

@@ -16,6 +16,7 @@ function enableFullscreen() {
   document.body.classList.add("fullscreen");
   fullscreenBtn.children[0].textContent = "fullscreen_exit";
   isFullscreenEnabled = true;
+  processInput(firstChordElement, firstChordContainerElement);
 }
 
 function disableFullscreen() {
@@ -23,6 +24,7 @@ function disableFullscreen() {
   document.body.classList.remove("fullscreen");
   fullscreenBtn.children[0].textContent = "fullscreen";
   isFullscreenEnabled = false;
+  processInput(firstChordElement, firstChordContainerElement);
 }
 
 // ******************************************************
@@ -163,6 +165,8 @@ async function restartRandomizer() {
 function resize_to_fit(output, outputContainer) {
   let fontSize = window.getComputedStyle(output).fontSize;
   output.style.fontSize = parseFloat(fontSize) - 20 + "px";
+  console.log(output.clientHeight);
+  console.log(outputContainer.clientHeight);
   if (output.clientHeight >= outputContainer.clientHeight) {
     resize_to_fit(output, outputContainer);
   }
@@ -174,8 +178,9 @@ function processInput(output, outputContainer) {
 }
 
 function autoRotate() {
-  if (window.innerHeight < 700) {
-    if (!isFullscreenEnabled) enableFullscreen();
+  if (window.innerHeight < 520) {
+    enableFullscreen();
+    console.log("dupa")
     randomizerElement.classList.add("rotate");
   } else {
     disableFullscreen();
