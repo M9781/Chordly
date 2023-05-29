@@ -15,6 +15,7 @@ function enableFullscreen() {
   randomizerElement.classList.add("fullscreen");
   document.body.classList.add("fullscreen");
   fullscreenBtn.children[0].textContent = "fullscreen_exit";
+  randomizerElement.requestFullscreen();
   isFullscreenEnabled = true;
   processInput(firstChordElement, firstChordContainerElement);
 }
@@ -23,6 +24,7 @@ function disableFullscreen() {
   randomizerElement.classList.remove("fullscreen");
   document.body.classList.remove("fullscreen");
   fullscreenBtn.children[0].textContent = "fullscreen";
+  document.exitFullscreen();
   isFullscreenEnabled = false;
   processInput(firstChordElement, firstChordContainerElement);
 }
@@ -165,8 +167,6 @@ async function restartRandomizer() {
 function resize_to_fit(output, outputContainer) {
   let fontSize = window.getComputedStyle(output).fontSize;
   output.style.fontSize = parseFloat(fontSize) - 20 + "px";
-  console.log(output.clientHeight);
-  console.log(outputContainer.clientHeight);
   if (output.clientHeight >= outputContainer.clientHeight) {
     resize_to_fit(output, outputContainer);
   }
@@ -179,11 +179,8 @@ function processInput(output, outputContainer) {
 
 function autoRotate() {
   if (window.innerHeight < 520) {
-    enableFullscreen();
-    console.log("dupa")
     randomizerElement.classList.add("rotate");
   } else {
-    disableFullscreen();
     randomizerElement.classList.remove("rotate");
   }
 }

@@ -316,10 +316,10 @@ window.addEventListener("resize", (event) => {
   processInput(firstChordElement, firstChordContainerElement);
 });
 
+pageLogo.scrollIntoView();
 setBeepsVisibility();
 showHideMetronome();
 showHideNextChord();
 setRadius(countdownProgressCircle);
-pageLogo.scrollIntoView();
 autoRotate();
 processInput(firstChordElement, firstChordContainerElement);
